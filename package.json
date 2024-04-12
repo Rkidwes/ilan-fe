@@ -1,0 +1,26 @@
+{
+  "name": "nlp-fe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "next": "14.1.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-responsive-masonry": "^2.2.0",
+    "sass": "^1.72.0"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "20.11.27",
+    "@types/react": "18.2.65",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.3"
+  }
+}

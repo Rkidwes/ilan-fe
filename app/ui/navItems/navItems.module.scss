@@ -1,0 +1,27 @@
+.navLink {
+  font-weight: 700;
+  color: var(--black);
+  text-transform: uppercase;
+  padding: 10px;
+  // background-color: lightblue;
+
+  &:hover {
+    text-decoration: none;
+    color: var(--grey-dark);
+  }
+}
+
+.navLinkActive {
+  color: var(--brand);
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (max-width: 767px) {
+  .navLink {
+    color: var(--white);
+    padding: 12px 24px;
+    display: block;
+  }
+}
