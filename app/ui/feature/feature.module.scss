@@ -1,0 +1,67 @@
+.feature {
+  background-color: var(--darkGrey);
+  color: var(--white);
+  padding-block: 32px;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.featureInner {
+  display: grid;
+  gap: 24px;
+}
+
+// Form
+
+.form {
+  input,
+  button {
+    appearance: none;
+    height: 48px;
+    border: none;
+    padding-inline: 24px;
+    border-radius: 48px;
+    z-index: 1;
+    position: relative;
+    font-size: calc(var(--fs-medium) * 1.1);
+    outline: 0;
+    outline-offset: -3px;
+
+    &:focus-visible,
+    &:focus {
+      outline: 2px solid var(--brand);
+    }
+  }
+
+  button {
+    z-index: 0;
+    background-color: var(--brand);
+    padding-inline-start: 72px;
+    margin-left: -48px;
+    transition: 0.2s;
+    color: var(--white);
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--brandDark);
+    }
+  }
+}
+
+// Spotify
+
+.spotify {
+  outline: 2px solid var(--white);
+  outline-offset: -2px;
+  border-radius: 12px;
+}
+
+@media screen and (min-width: 769px) {
+  .featureInner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

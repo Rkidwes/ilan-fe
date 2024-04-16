@@ -19,7 +19,7 @@ function NavItems({ links }) {
           <Link href={link.linkHref} className={clsx(styles.navLink, {
               [styles.navLinkActive]: pathname === link.linkHref
             })}
-          >{link.linkText}</Link>
+          ><span>{link.linkText}</span></Link>
         </li>
       ))}
     </>

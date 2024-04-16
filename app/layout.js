@@ -1,19 +1,14 @@
-import { Montserrat, Volkhov } from "next/font/google";
+import { Mulish } from "next/font/google";
 import "./globals.scss";
 
-import Header from './ui/header/header.jsx'
-import FooterForm from './ui/footerform/footerform.jsx'
+import Feature from './ui/feature/feature.jsx'
 import Footer from './ui/footer/footer.jsx'
+import Header from './ui/header/header.jsx'
 
-const montserrat = Montserrat({ 
+const muli = Mulish({ 
   subsets: ["latin"],
-  variable: '--font-montserrat', 
-});
-
-const volkhov = Volkhov({ 
-  subsets: ["latin"],
-  weight: ['400', '700'],
-  variable: '--font-volkhov',
+  weight: ['400', '500'],
+  variable: '--font-muli',
 });
 
 export const metadata = {
@@ -23,10 +18,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${volkhov.variable}`}>
+    <html lang="en" className={`${muli.variable}`}>
       <body className="content-grid">
         <Header />
         {children}
+        <Feature />
         <Footer />
       </body>
     </html>

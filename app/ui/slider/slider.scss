@@ -1,0 +1,44 @@
+.slider {
+  padding: 0;
+  // height: 100vh;
+
+  // & > * {
+  //   background-position: center;
+  //   background-size: cover;
+  // }
+}
+
+.splide__arrow {
+  --x-position: 10px;
+
+  background: url("/ib-sprite.png") no-repeat;
+  background-size: 300px 300px;
+  background-position: var(--x-position) 0;
+  text-indent: 100px;
+  line-height: 100px;
+  overflow: hidden;
+
+  width: 30px;
+  height: 52px;
+  border-radius: 0;
+  transition: 0.2s;
+
+  &:hover {
+    --x-position: 5px;
+
+    &.splide__arrow--next {
+      --x-position: -105px;
+    }
+  }
+}
+
+.splide__arrow--next {
+  --x-position: -110px;
+}
+
+.splide__pagination {
+  background-color: red;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+}

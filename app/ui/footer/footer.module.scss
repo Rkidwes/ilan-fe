@@ -1,56 +1,167 @@
 .footer {
-  --padding: 12px;
+  // --padding: 12px;
+
+  background-color: var(--grey);
 
   font-family: var(--sans);
   font-size: var(--fs-medium);
   font-weight: light;
+
+  padding-block: 64px;
 }
 
-.footerTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-block: var(--padding);
-  position: relative;
-  color: var(--brand);
+.footerGrid {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(3, 1fr);
 
-  &:after {
-    position: absolute;
-    content: "";
-    inset: 0 -24px;
-    top: unset;
-    height: 1px;
-    background-color: var(--grey);
+  h5 {
+    padding-bottom: 0.5em;
+    margin: 0 0 1em;
+    border-bottom: 1px solid #13bbff;
+    font-size: 0.75rem;
+  }
+
+  p {
+    font-size: var(--fs-xsmall);
+
+    i {
+      background: url("https://www.ilanbluestone.com/themes/ilan/img/new/anjunabeats.png")
+        no-repeat;
+      display: block;
+      width: 26px;
+      height: 13px;
+      background-size: 26px;
+      margin-right: 8px;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+    display: flex;
+    height: 36px;
+    align-items: center;
+    color: var(--white);
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:not(.footerIconsLink) {
+      background-size: 26px;
+      padding-left: 32px;
+      background-position: left;
+      background-repeat: no-repeat;
+    }
+
+    &.anjunabeats {
+      background-image: url("https://www.ilanbluestone.com/themes/ilan/img/new/anjunabeats.png");
+    }
+
+    &.cyberduck {
+      background-image: url("https://www.ilanbluestone.com/themes/ilan/img/new/cyber-duck.png");
+    }
   }
 }
 
-.footerlinks {
+.footerIconsList {
   display: flex;
-  flex-wrap: nowrap;
+  list-style: none;
+  gap: 16px;
 }
 
-.footerBottom {
-  font-size: 0.75em;
-  text-align: center;
-  padding-block: var(--padding);
-  color: var(--grey);
+.footerIconsItem {
+  padding-inline: 8px;
 }
 
-@media screen and (min-width: 768px) {
-  .footerBottom {
-    max-width: 600px;
+.footerIconsLink {
+  width: 36px;
+  height: 36px;
+  text-indent: 100px;
+  line-height: 100px;
+  overflow: hidden;
+  display: block;
+  background: url("/ib-sprite.png") no-repeat;
+  background-size: 300px 300px;
+  background-position: var(--xPosition) var(--yPosition, -181px);
+
+  &:hover {
+    background-position-y: var(--yPosition, -221px);
+  }
+
+  &Soundcloud {
+    --xPosition: -77px;
+    --yPosition: -93px;
+
+    &:hover {
+      --yPosition: -133px;
+    }
+  }
+
+  &Twitter {
+    --xPosition: -86px;
+  }
+
+  &Facebook {
+    --xPosition: 10px;
+  }
+
+  &Instagram {
+    --xPosition: -36px;
+  }
+
+  &Beatport {
+    --xPosition: 3px;
+    --yPosition: -93px;
+
+    &:hover {
+      --yPosition: -133px;
+    }
+  }
+
+  &YouTube {
+    --xPosition: -136px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 170px max-content 170px;
+    margin-inline: auto;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 680px) and (max-width: 1023px) {
+  .footer {
+    padding-block: 40px;
+  }
+  .footerIconsList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .footerIconsLink {
     margin-inline: auto;
   }
 }
 
-@media screen and (max-width: 767px) {
-  .footer {
-    --padding: 20px;
+@media screen and (min-width: 680px) {
+  .footerGridSocials {
+    flex: 1;
   }
+}
 
-  .footerTop {
-    text-align: center;
+@media screen and (max-width: 679px) {
+  .footer {
+    padding-block: 24px;
+  }
+  .footerGrid {
+    display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 24px;
+  }
+  .footerIconsList {
+    column-gap: 0;
+    flex-wrap: wrap;
   }
 }

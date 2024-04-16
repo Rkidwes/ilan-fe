@@ -1,0 +1,55 @@
+.bookingForm {
+  padding: 48px;
+  background-color: hsla(0, 0%, 6%, 0.5);
+  fieldset {
+    border: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 24px;
+    margin-bottom: 24px;
+
+    input[type="date"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="url"],
+    textarea {
+      // border: 1px solid var(--black);
+      border: none;
+      padding: 12px 24px;
+      // height: 46px;
+      width: 100%;
+      background-color: var(--white);
+      outline: 0;
+      outline-offset: -3px;
+      box-sizing: border-box;
+
+      &:focus-visible,
+      &:focus {
+        outline: 2px solid var(--brand);
+      }
+    }
+
+    textarea {
+      height: unset;
+      font-family: var(--fonts);
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bookingForm {
+    padding: 24px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .bookingForm {
+    fieldset {
+      grid-template-columns: auto;
+    }
+  }
+}
