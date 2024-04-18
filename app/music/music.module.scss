@@ -1,0 +1,62 @@
+.musicCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  gap: 24px;
+}
+
+.musicCardWrapper {
+  container-type: inline-size;
+}
+
+.musicCard {
+  display: flex;
+  gap: 16px;
+
+  img {
+    width: 140px;
+    height: 140px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+a.musicIconsLink {
+  width: 36px;
+  height: 36px;
+  text-indent: 100px;
+  line-height: 100px;
+  overflow: hidden;
+  display: block;
+  background: url("/ib-sprite.png") no-repeat;
+  background-size: 300px 300px;
+  background-position: var(--xPosition, -118px) var(--yPosition);
+  transition: unset;
+
+  &Spotify {
+    --yPosition: -93px;
+
+    &:hover {
+      --yPosition: -133px;
+    }
+  }
+}
+
+@container (max-width: 330px) {
+  .musicCard {
+    flex-direction: column;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .musicCards {
+    grid-template-columns: 1fr;
+  }
+}
