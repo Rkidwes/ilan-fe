@@ -36,7 +36,7 @@ function Feature() {
             </form> */}
           </div>
           <div>
-          <iframe className={styles.spotify} src="https://open.spotify.com/embed/artist/1yoZuH2j43vVSWsOwYuQyn?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe className={styles.spotify} src="https://open.spotify.com/embed/artist/1yoZuH2j43vVSWsOwYuQyn?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
           </div>
         </div>
       </div>
