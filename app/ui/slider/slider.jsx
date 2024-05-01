@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 
 import Image from 'next/image'
+import Link from 'next/link'
 import clsx from 'clsx';
 
 import '@splidejs/react-splide/css';
@@ -11,70 +12,130 @@ import './slider.scss';
 
 const Slider = () => {
 
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  // const [isFullscreen, setIsFullscreen] = useState(false);
+
   const mainRef = useRef(null);
+  const videoRef = useRef(null);
+
+  const togglePlayPause = () => {
+    if (isPlaying) {
+      videoRef.current.pause(); // Pause the video
+      setIsPlaying(false);      // Update state to paused
+    } else {
+      videoRef.current.play();  // Play the video
+      setIsPlaying(true);       // Update state to playing
+    }
+  };
+
+  const toggleMute = () => {
+    if (isMuted) {
+      videoRef.current.muted = false; // Unmute the video
+      setIsMuted(false); // Update state to unmuted
+    } else {
+      videoRef.current.muted = true; // Mute the video
+      setIsMuted(true); // Update state to muted
+    }
+  };
+
+  // const toggleFullscreen = () => {
+  //   if (!isFullscreen) {
+  //     if (videoRef.current.requestFullscreen) {
+  //       videoRef.current.requestFullscreen(); // Enter fullscreen mode
+  //     }
+  //     setIsFullscreen(true); // Update state to fullscreen
+  //     console.log(isFullscreen);
+  //   } else {
+  //     if (document.exitFullscreen) {
+  //       document.exitFullscreen(); // Exit fullscreen mode
+  //     }
+  //     setIsFullscreen(false); // Update state to normal mode
+  //     console.log(isFullscreen);
+  //   }
+  // };
 
   const slides = [
     {
       title: "'Impulse', the brand new 2nd artist album",
       subtitle: 'Released 7th May 2021',
       linkText: 'Out now!!',
-      linkUrl: '#',
-      media: '/ANJCD095ID-copy-1.jpg',
-      pagination: 'Slide 1',
-    },
-    // {
-    //   title: 'Title 2 goes here',
-    //   subtitle: 'A second subtitle goes here',
-    //   linkText: 'Click this now',
-    //   linkUrl: '#',
-    //   pagination: 'Slide 2',
-    // },
-    {
-      title: 'Title 3 goes here',
-      subtitle: 'A third subtitle goes here',
-      linkText: 'Click this',
-      linkUrl: '#',
-      media: '/ANJ714D-copy.jpg',
-      pagination: 'Slide 3'
+      linkUrl: 'https://anjunabeats.ffm.to/impulse.gcn',
+      external: true,
+      media: '/Impulse-Ilan-Bluestone.jpg',
+      pagination: 'New Album',
     },
     {
-      title: 'Title 2 goes here',
-      subtitle: 'A second subtitle goes here',
-      linkText: 'Click this now',
-      linkUrl: '#',
-      media: '/Screen-Shot-2022-03-07-at-9.43.46-AM-copy.jpg',
-      pagination: 'Lorejm ipsum sit dolor'
+      title: 'ABGT 450',
+      subtitle: "See ilan's performance at The Drumsheds in London for ABGT 450",
+      linkText: 'Watch The Video',
+      linkUrl: 'https://youtu.be/0oy1aDdZWec',
+      external: true,
+      media: '/Ilan-Bluestone_Group-Therapy-450-Live-At-The-Drumsheds.mp4',
+      pagination: 'ABGT 450',
+    },
+    {
+      title: 'Tour Schedule',
+      subtitle: 'Find out if ilan Bluestone is performing at a venue near you',
+      linkText: 'Tour Schedule',
+      linkUrl: '/tour',
+      media: '/Above-and-Beyond-Steelyard-26th-May-2018-by-Luke-Dyson-IMG-1114.jpg',
+      pagination: 'Tour Schedule'
+    },
+    {
+      title: 'To night Feat. El Waves',
+      linkText: 'Out Now!!',
+      linkUrl: 'https://anjunabeats.ffm.to/ibelwtnt.gcn',
+      external: true,
+      media: '/Tonight-Ilan-Bluestone.jpg',
+      pagination: 'New single'
     },
   ]
 
   const renderSlides = () => (
     <SplideTrack>
-      {/* width = '2000', height = '2000' */}
-      {slides.map(({ title, subtitle, linkText, linkUrl, media }, index) => (
-        media ? (
+      {slides.map(({ title, subtitle, linkText, linkUrl, media, external }, index) => (
         <SplideSlide key={index} className={`splide__slide__${index}`}>
-          <Image 
-            src={media} 
-            alt={title} 
-            fill
-            sizes='100vw'
-            priority={index === 0}
-          />
+          {media.endsWith('.mp4') ? 
+            (
+              <>
+                {/* onCanPlay={this.muted=`${isMuted}`} */}
+                <video ref={videoRef} autoPlay muted={isMuted} loop id={`splide__video__${index}`} className="splide__video">
+                  <source src={media} type="video/mp4" />
+                </video>
+              </>
+            ) 
+            : 
+            (
+              <Image 
+                src={media} 
+                alt={title} 
+                fill
+                sizes='100vw'
+                priority={index === 0}
+              />
+            )
+          }
+          
           <div className='container'>
             <h2>{title}</h2>
-            <p className="large">{subtitle}</p>
-            <p><a href={linkUrl} className="small">{linkText}</a></p>
+            {subtitle && (<p>{subtitle}</p>)}
+            <p><Link href={linkUrl} target={external && `_blank`}>{linkText}</Link></p>
+            {media.endsWith('.mp4') && (
+              <div className="sliderButtons">
+                <button onClick={togglePlayPause}>
+                  <span className={clsx(`play`, isPlaying ? `playing` : `paused`)} />
+                </button>
+                <button onClick={toggleMute}>
+                  <span className={clsx('mute', isMuted ? `muted` : `unmuted`)} />
+                </button>
+                {/* <button onClick={toggleFullscreen}>
+                  <span className="fullscreen" />
+                </button> */}
+              </div>
+            )}
           </div>
-        </SplideSlide>)
-        : 
-        (<SplideSlide key={index}>
-          <div></div>
-          <div className='container'>
-            <h2>{title}</h2>
-            <p>{subtitle}</p>
-            <p><a href={linkUrl}>{linkText}</a></p>
-          </div>
-        </SplideSlide>)
+        </SplideSlide>
       ))}
     </SplideTrack>
   );
@@ -100,8 +161,8 @@ const Slider = () => {
     // }
   };
 
-  const fallback = slides[0].media
-  console.log(fallback)
+  // const fallback = slides[0].media
+  // console.log(fallback)
 
   return (
     <>
