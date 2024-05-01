@@ -4,6 +4,19 @@ import btnStyles from '../ui/base/button/button.module.scss';
 import Link from "next/link"
 import clsx from 'clsx'
 
+const metaDescription = 'Please visit this page to submit a booking enquiry with Ilan Bluestone.'
+
+export const metadata = {
+  title: 'Bookings',
+  description: metaDescription,
+  openGraph: {
+    description: metaDescription
+  },
+  twitter: {
+    description: metaDescription
+  }
+};
+
 export default function Bookings() {
   return (
   <main id={styles.main} style={{backgroundImage: "url('https://www.ilanbluestone.com/themes/ilan/img/new/bg-bookings.jpg')"}}>
@@ -12,7 +25,7 @@ export default function Bookings() {
         <h1>Bookings</h1>
         <p className={styles.hero}>For enquiries, please fill in the form below.</p>
 
-        <form id="Form_BookingForm" className={bookingStyles.bookingForm} action="/bookings/BookingForm" method="post" enctype="application/x-www-form-urlencoded" class="ajax-action form-booking" novalidate="novalidate">
+        <form id="Form_BookingForm" className={bookingStyles.bookingForm} action="/bookings/BookingForm" method="post" encType="application/x-www-form-urlencoded" class="ajax-action form-booking" novalidate="novalidate">
           <p id="Form_BookingForm_error" class="message " style={{ display: 'none' }}></p>
           <fieldset>
             <div id="Name" class="field text nolabel">

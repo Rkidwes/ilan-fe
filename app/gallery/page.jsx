@@ -1,6 +1,19 @@
 import styles from "../page.module.scss";
 import Link from "next/link"
 
+const metaDescription = 'Check out the Ilan Bluestone&#039;s latest Instagram updates.'
+
+export const metadata = {
+  title: 'Gallery',
+  description: metaDescription,
+  openGraph: {
+    description: metaDescription
+  },
+  twitter: {
+    description: metaDescription
+  }
+};
+
 export default function Gallery() {
   return (
   <main id={styles.main}>

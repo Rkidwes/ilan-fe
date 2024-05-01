@@ -4,6 +4,19 @@ import Link from "next/link"
 import Image from "next/image"
 import clsx from 'clsx'
 
+const metaDescription = 'Check out Ilan Bluestone&#039;s latest and hottest tracks available for download.'
+
+export const metadata = {
+  title: 'Music',
+  description: metaDescription,
+  openGraph: {
+    description: metaDescription
+  },
+  twitter: {
+    description: metaDescription
+  }
+};
+
 export default function Music() {
 
   const music = [
@@ -77,7 +90,7 @@ export default function Music() {
         <div className={musicStyles.musicCards}>
 
           {music.map((item, index) => (
-            <div key={index} className={musicStyles.musicCardWrapper} itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
+            <div key={index} className={musicStyles.musicCardWrapper} itemprop="track" itemScope itemtype="http://schema.org/MusicRecording">
               <div className={musicStyles.musicCard}>
                 <Image src={`/${item.img}`} width="330" height="330" alt="" />
                 <div className={musicStyles.musicDetails}>

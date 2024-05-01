@@ -2,6 +2,19 @@ import styles from "../page.module.scss";
 import Link from "next/link"
 import clsx from 'clsx'
 
+const metaDescription = 'Ilan Bluestone has been igniting the dance scene across the world with his unique tracks consisting of that &#039;progressive&#039; sound he builds on today.'
+
+export const metadata = {
+  title: 'Bio',
+  description: metaDescription,
+  openGraph: {
+    description: metaDescription
+  },
+  twitter: {
+    description: metaDescription
+  }
+};
+
 export default function Bio() {
   return (
   <main id={styles.main} style={{backgroundImage: "url('https://www.ilanbluestone.com/assets/Bio/ilan-bio-section.jpg')"}}>
