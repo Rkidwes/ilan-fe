@@ -51,6 +51,7 @@
     flex-direction: column;
     row-gap: 24px;
     padding: 12px;
+    position: relative;
 
     & > * {
       color: var(--white);
@@ -210,3 +211,58 @@
 // position: relative;
 // transition: transform .2s linear;
 // width: 8px;
+
+.splide__video {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.sliderButtons {
+  display: flex;
+  gap: 12px;
+  button {
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0);
+    border: 2px solid var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+
+    span {
+      width: 20px;
+      height: 20px;
+      background: url("/ib-sprite.png") no-repeat;
+      background-size: 250px 250px;
+
+      &.play {
+        background-position: -81px -48px;
+        &.paused {
+          background-position: -123px -48px;
+          width: 18px;
+        }
+      }
+
+      &.mute {
+        background-position: 2px -48px;
+        &.unmuted {
+          background-position: -28px -48px;
+        }
+      }
+
+      &.fullscreen {
+        background-position: -176px -48px;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
