@@ -1,3 +1,5 @@
+import { GoogleTagManager } from '@next/third-parties/google'
+
 import { Mulish } from "next/font/google";
 import "./globals.scss";
 
@@ -85,6 +87,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${muli.variable}`}>
       <body className="content-grid">
+        <GoogleTagManager gtmId="GTM-KN2ZSS" />
         <Header />
         {children}
         <Feature />
