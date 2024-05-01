@@ -63,6 +63,14 @@
   }
 }
 
+@media (max-width: 500px) {
+  #main {
+    &.home {
+      background-position: right -150px bottom 0;
+    }
+  }
+}
+
 /* .main {
   display: flex;
   flex-direction: column;

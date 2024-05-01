@@ -5,13 +5,9 @@ import Nav from '../nav/nav.jsx'
 import styles from './header.module.scss';
 import clsx from 'clsx'
 
-// function NLPLogo() {
-//   return <Logo />;
-// }
-
 function Header() {
   return (
-    <header className={clsx(`full-width`, styles.header)} itemscope role="banner">
+    <header className={clsx(`full-width`, styles.header)} itemScope role="banner">
       <div className='container'>
         <div className={styles.headerInner}>
           <Link href="/">

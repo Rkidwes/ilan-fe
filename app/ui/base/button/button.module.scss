@@ -1,83 +1,98 @@
-.btn {
+a.btn,
+button.btn {
   --borderWidth: 2px;
+  --borderColor: var(--brandDark);
+
   border: none;
   background-color: var(--brand);
-  border-bottom: var(--borderWidth) solid var(--brandDark);
   height: 40px;
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
+  padding-inline: 20px;
+  color: var(--white);
+  text-transform: uppercase;
+  text-decoration: none !important;
+  border-bottom: 2px solid var(--borderColor);
+  transition: all 0.2s;
 
   &.btnCta {
-    padding-inline: 20px 6px;
-    // padding: 14px 6px 12px 24px;
-    text-transform: uppercase;
-    color: var(--white);
+    padding-inline: 20px 10px;
     position: relative;
-    margin-right: 27px;
-    display: flex;
-    align-items: center;
-    transition: all 0.2s;
-
-    // Navigation Specific
-    // height: fit-content;
-    align-self: center;
+    margin-right: 20px;
 
     span {
-      z-index: 1;
+      z-index: 2;
       position: relative;
     }
 
-    &:after {
-      transition: all 0.2s;
-      position: absolute;
-      content: "";
-      width: 25px;
-      height: 100%;
-      top: 0;
-      right: -15px;
-      background-color: var(--brand);
-      border-bottom: 2px solid var(--brandDark);
-      border-right: 2px solid var(--brandDark);
-      transform: skewX(153deg);
-    }
-
     &:hover {
-      background-color: var(--brandDark);
       text-decoration: none;
-      // border-color: var(--brandDark);
+      background-color: var(--brandDark);
 
       &:after {
         background-color: var(--brandDark);
       }
     }
+
+    &:after {
+      transition: all 0.2s;
+      position: absolute;
+      background-color: var(--brand);
+      inset: 0 -10px calc(var(--borderWidth) * -1);
+      left: unset;
+      content: "";
+      width: 20px;
+      transform: skewX(153deg);
+      border-bottom: var(--borderWidth) solid var(--borderColor);
+      border-right: var(--borderWidth) solid var(--borderColor);
+    }
+
+    &.btnOutline {
+      border-right: 0;
+      &:after {
+        top: calc(var(--borderWidth) * -1);
+        background-color: transparent;
+        border-top: var(--borderWidth) solid var(--borderColor);
+        border-right: var(--borderWidth) solid var(--borderColor);
+      }
+    }
+
+    //   &.btnCtaOutline {
+    //     --borderColor: var(--brand);
+
+    //     border: var(--borderWidth) solid var(--borderColor);
+    //     border-right: none;
+    //     background-color: transparent;
+
+    //     &:hover {
+    //       --borderColor: var(--brandDark);
+    //     }
+
+    //     &:after {
+    //       background-color: transparent;
+    //       border: var(--borderWidth) solid var(--borderColor);
+    //       border-left: none;
+    //       top: calc(var(--borderWidth) * -1);
+    //     }
+    // }
   }
 
-  & + * {
-    // margin-left: 32px;
-  }
-  // span {
-  //   padding: 6px 1em 6px 1.5em;
-  //   background-color: var(--brand);
-  //   color: var(--white);
-  //   border: 2px solid var(--brand);
-  //   border-bottom-color: var(--brandDark);
-  // }
-
-  // &:hover {
-  //   span {
-  //     background-color: var(--brandDark);
-  //     border-color: var(--brandDark);
-  //     text-decoration: none;
-  //   }
-  // }
-
-  &.btnSecondary {
+  &.btnOutline {
+    --borderColor: var(--brand);
     background: none;
-    color: var(--brand);
-    border: 1px solid var(--brand);
+    color: var(--white);
+    border: 2px solid var(--borderColor);
+
+    &:hover {
+      --borderColor: var(--brandDark);
+      background: none;
+    }
   }
 
   &.btnToggle {
     aspect-ratio: 1;
+    padding: 0;
     // border-radius: 4px;
     display: flex;
     align-items: center;

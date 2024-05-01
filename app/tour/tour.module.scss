@@ -1,0 +1,36 @@
+.schedule {
+  border-bottom: 1px solid var(--white);
+  padding-bottom: 12px;
+  width: 100%;
+
+  tr {
+    display: flex;
+  }
+
+  td {
+    padding: 12px;
+    vertical-align: top;
+
+    &.venue {
+      flex: 1;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.logo {
+  margin-top: 12px;
+  float: right;
+}
+
+@media screen and (max-width: 768px) {
+  .schedule {
+    tr {
+      display: grid;
+      margin-bottom: 24px;
+    }
+    td {
+      padding-block: 4px;
+    }
+  }
+}

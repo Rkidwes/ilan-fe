@@ -9,7 +9,6 @@ import styles from './navItems.module.scss';
 function NavItems({ links }) {
 
   const pathname = usePathname();
-  console.log(pathname)
 
   return (
     <>

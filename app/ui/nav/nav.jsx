@@ -57,7 +57,7 @@ function Nav() {
       <div className={styles.navButtons}>
         <Link href="/bookings" className={clsx(btnStyles.btn, btnStyles.btnCta)}><span>Bookings</span></Link>
         {/* <Button link="#">Bookings</Button> */}
-        <button onClick={handleClick} className={clsx(styles.navToggle, btnStyles.btn, btnStyles.btnToggle, btnStyles.btnSecondary, isMenuOpen ? styles.navListOpen : '')}>
+        <button onClick={handleClick} className={clsx(styles.navToggle, btnStyles.btn, btnStyles.btnToggle, btnStyles.btnOutline, isMenuOpen ? styles.navListOpen : '')}>
           <svg viewBox="0 0 46 40" width="46" height="40" fill="#fff" className={styles.navToggleIcon}>
             <rect width="46" height="4"></rect>
             <rect y="18" width="46" height="4"></rect>
