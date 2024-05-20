@@ -78,6 +78,8 @@ const Slider = () => {
           </div>
         </SplideSlide>)
         : 
+        // data-splide-html-video="/Ilan-Bluestone_Group-Therapy-450-Live-At-The-Drumsheds.mp4"
+        // data-splide-youtube="https://www.youtube.com/watch?v=cdz__ojQOuU"
         (<SplideSlide key={index} data-splide-youtube="https://www.youtube.com/watch?v=cdz__ojQOuU">
           <div className='container'>
             <h2>{title}</h2>
@@ -103,6 +105,7 @@ const Slider = () => {
         youtube: { 
           controls: '0',
          },
+        htmlVideo: {},
       },
     }
   };

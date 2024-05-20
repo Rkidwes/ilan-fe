@@ -3,6 +3,7 @@ import musicStyles from "./music.module.scss";
 import Link from "next/link"
 import Image from "next/image"
 import clsx from 'clsx'
+import MusicCard from "../ui/musicCard/musicCard";
 
 const metaDescription = 'Check out Ilan Bluestone&#039;s latest and hottest tracks available for download.'
 
@@ -90,19 +91,7 @@ export default function Music() {
         <div className={musicStyles.musicCards}>
 
           {music.map((item, index) => (
-            <div key={index} className={musicStyles.musicCardWrapper} itemprop="track" itemScope itemtype="http://schema.org/MusicRecording">
-              <div className={musicStyles.musicCard}>
-                <Image src={`/${item.img}`} width="330" height="330" alt="" />
-                <div className={musicStyles.musicDetails}>
-                  <h4 itemprop="name" className={styles.musicName}>{ item.title }</h4>
-                  <p className={styles.musicDate}>Released: { item.details }</p>
-                  <p className={styles.musicListen}>Listen:</p>
-                  <Link href={ item.url } className={clsx(musicStyles.musicIconsLink, musicStyles.musicIconsLinkSpotify)} target="_blank">
-                    Listen on Spotify
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <MusicCard key={index} item={item} />
           ))}
           
         </div>

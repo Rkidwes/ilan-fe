@@ -2,7 +2,7 @@ import styles from "./page.module.scss";
 import Link from "next/link"
 import clsx from 'clsx'
 
-import Slider from './ui/slider/slider.jsx'
+import Slider from './ui/slider/slider'
 
 export default function Home() {
   return (

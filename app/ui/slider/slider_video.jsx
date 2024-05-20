@@ -2,12 +2,14 @@
 
 import React, { useRef, useState } from 'react';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
+import { Video } from '@splidejs/splide-extension-video';
 
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx';
 
 import '@splidejs/react-splide/css';
+import '@splidejs/splide-extension-video/dist/css/splide-extension-video.min.css';
 import './slider.scss';
 
 const Slider = () => {
@@ -19,25 +21,25 @@ const Slider = () => {
   const mainRef = useRef(null);
   const videoRef = useRef(null);
 
-  const togglePlayPause = () => {
-    if (isPlaying) {
-      videoRef.current.pause(); // Pause the video
-      setIsPlaying(false);      // Update state to paused
-    } else {
-      videoRef.current.play();  // Play the video
-      setIsPlaying(true);       // Update state to playing
-    }
-  };
+  // const togglePlayPause = () => {
+  //   if (isPlaying) {
+  //     videoRef.current.pause(); // Pause the video
+  //     setIsPlaying(false);      // Update state to paused
+  //   } else {
+  //     videoRef.current.play();  // Play the video
+  //     setIsPlaying(true);       // Update state to playing
+  //   }
+  // };
 
-  const toggleMute = () => {
-    if (isMuted) {
-      videoRef.current.muted = false; // Unmute the video
-      setIsMuted(false); // Update state to unmuted
-    } else {
-      videoRef.current.muted = true; // Mute the video
-      setIsMuted(true); // Update state to muted
-    }
-  };
+  // const toggleMute = () => {
+  //   if (isMuted) {
+  //     videoRef.current.muted = false; // Unmute the video
+  //     setIsMuted(false); // Update state to unmuted
+  //   } else {
+  //     videoRef.current.muted = true; // Mute the video
+  //     setIsMuted(true); // Update state to muted
+  //   }
+  // };
 
   // const toggleFullscreen = () => {
   //   if (!isFullscreen) {
@@ -93,45 +95,34 @@ const Slider = () => {
   ]
 
   const renderSlides = () => (
+    // data-splide-html-video=
     <SplideTrack>
       {slides.map(({ title, subtitle, linkText, linkUrl, media, external }, index) => (
-        <SplideSlide key={index} className={clsx(`splide__slide__${index}`)}>
-          {media.endsWith('.mp4') ? 
-            (
-              <>
-                {/* <SliderVideo videoRef={videoRef} media={media} isMuted={isMuted} index={index} /> */}
-                {/* onCanPlay={this.muted=`${isMuted}`} */}
-                <video ref={videoRef} autoPlay muted={isMuted} loop className="splide__video">
-                  <source src={media} type="video/mp4" />
-                </video>
-              </>
-            ) 
-            : 
-            (
-              <Image 
-                src={media} 
-                alt={title} 
-                fill
-                sizes='100vw'
-                priority={index === 0}
-                lazyload={index === 2 || index === 3}
-              />
-            )
+        <SplideSlide key={index} className={`splide__slide__${index}`} data-splide-html-video={media}>
+          
+          {media.endsWith('.mp4') ? '' : 
+            (<Image 
+              src={media} 
+              alt={title} 
+              fill
+              sizes='100vw'
+              priority={index === 0}
+            />)
           }
           
           <div className='container'>
             <h2>{title}</h2>
             {subtitle && (<p>{subtitle}</p>)}
-            <p><Link href={linkUrl} target={external && `_blank`} rel={external && 'noopener noreferrer'}>{linkText}</Link></p>
+            <p><Link href={linkUrl} target={external && `_blank`}>{linkText}</Link></p>
             {media.endsWith('.mp4') && (
               <div className="sliderButtons">
-                <button onClick={togglePlayPause}>
+                {/* <button onClick={togglePlayPause}>
                   <span className={clsx(`play`, isPlaying ? `playing` : `paused`)} />
-                </button>
-                {/*  onClick={() => setIsMuted(!isMuted)} */}
-                <button onClick={toggleMute}>
+                </button> */}
+                {/*  onClick={toggleMute} */}
+                {/* <button onClick={() => setIsMuted(!isMuted)}>
                   <span className={clsx('mute', isMuted ? `muted` : `unmuted`)} />
-                </button>
+                </button> */}
                 {/* <button onClick={toggleFullscreen}>
                   <span className="fullscreen" />
                 </button> */}
@@ -144,9 +135,8 @@ const Slider = () => {
   );
 
   const mainOptions = {
-    type : 'slide',
-    interval: 4000,
-    autoplay : true,
+    type : 'loop',
+    // autoplay : true,
     rewind : true,
     height: '100vh',
     breakpoints: {
@@ -156,13 +146,13 @@ const Slider = () => {
       1023: {
         height: '720px',
       }
+    },
+    video: {
+      autoplay: true,
+      mute : true,
+      loop: true,
+      hideControls: true,
     }
-    // video: {
-    //   autoplay: true,
-    //   mute : true,
-    //   loop: true,
-    //   hideControls: true,
-    // }
   };
 
   // const fallback = slides[0].media
@@ -190,6 +180,7 @@ const Slider = () => {
           ref={mainRef}
           hasTrack={ false }
           aria-label="Latest News"
+          extensions={{ Video }}
         >
           {renderSlides()}
           <div className="splide__arrows">
