@@ -47,7 +47,7 @@ function Nav() {
 
   return (
     <nav className={styles.nav}>
-      <ul onClick={handleClick} className={clsx(styles.navList, {
+      <ul onClick={() => setIsMenuOpen(false)} className={clsx(styles.navList, { // onClick={handleClick}
         [styles.navListOpen]: isMenuOpen === true
       })}>
           <NavItems links={links} />
