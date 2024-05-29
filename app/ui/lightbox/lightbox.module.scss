@@ -17,8 +17,8 @@
   padding: 0;
   border: none;
   outline: none;
-  max-width: 90%;
-  max-height: 90%;
+  // max-width: 90%;
+  // max-height: 90%;
 }
 
 .lightbox {
@@ -80,4 +80,42 @@
   color: white;
   font-size: 2rem;
   cursor: pointer;
+}
+
+@media screen and (max-width: 740px) {
+  .modal {
+    width: 100%;
+  }
+
+  .imageContainer {
+    flex: 1;
+  }
+
+  .navButton {
+    scale: 0.75;
+    width: 24px;
+    --x-position: 4px;
+
+    &:hover {
+      --x-position: 4px;
+
+      &.navButtonNext {
+        --x-position: -109px;
+      }
+    }
+  }
+
+  .navButtonNext {
+    --x-position: -109px;
+  }
+
+  .closeButton {
+    right: 12px;
+  }
+}
+
+@media screen and (min-width: 421px) and (max-width: 739px) {
+  .closeButton {
+    right: 24px;
+  }
 }
