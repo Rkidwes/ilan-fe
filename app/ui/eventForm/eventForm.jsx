@@ -40,7 +40,7 @@ const EventForm = () => {
             const data = await res.json();
 
             if (res.ok) {
-                setMessage('Your submission has been successful! We will be in touch as soon as possible.');
+                setMessage({ __html: '<p>Your submission has been successful! <br>We will be in touch as soon as possible.</p>'});
                 setFormData({
                     name: '',
                     email: '',
@@ -121,7 +121,7 @@ const EventForm = () => {
                         placeholder="Enter any additional information here"
                     ></textarea>
                 </div>
-                {message && (<div className={styles.message}>{message}</div>)}
+                {message && (<div className={styles.message} dangerouslySetInnerHTML={message}></div>)}
             </fieldset>
             <button type="submit" className={clsx(btnStyles.btn, btnStyles.btnCta)}>Send Booking Enquiry</button>
         </form>

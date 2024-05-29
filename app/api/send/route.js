@@ -7,7 +7,7 @@ export async function POST(request) {
   try {
     const { formData } = await request.json();
 
-    const { name, email, phone, event, details } = formData;
+    const { name, email, phone, eventName, details } = formData;
 
     const { data, error } = await resend.emails.send({
       from: 'Acme <onboarding@resend.dev>',
@@ -17,7 +17,7 @@ export async function POST(request) {
         name,
         email,
         phone,
-        event,
+        eventName,
         details,
        }),
     });

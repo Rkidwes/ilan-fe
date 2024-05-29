@@ -4,7 +4,7 @@ export const EmailTemplate = ({
   name,
   email,
   phone,
-  event,
+  eventName,
   details
 }) => (
 
@@ -27,9 +27,9 @@ export const EmailTemplate = ({
           <th align='left' style={{ padding: '4px 8px 4px 0'}}>Telephone:</th>
           <td style={{ padding: '4px 8px 4px 0'}}>{phone}</td>
         </tr>)}
-        {event && (<tr>
+        {eventName && (<tr>
           <th align='left' style={{ padding: '4px 8px 4px 0'}}>Event Name:</th>
-          <td style={{ padding: '4px 8px 4px 0'}}>{event}</td>
+          <td style={{ padding: '4px 8px 4px 0'}}>{eventName}</td>
         </tr>)}
         {details && (<tr>
           <th align='left' style={{ padding: '4px 8px 4px 0'}}>Additional Information:</th>
