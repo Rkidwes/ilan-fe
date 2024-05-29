@@ -86,7 +86,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${muli.variable}`}>
-      <body className="content-grid">
+      <body className="content-grid" id="body">
         <GoogleTagManager gtmId="GTM-KN2ZSS" />
         <Header />
         {children}

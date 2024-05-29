@@ -1,6 +1,8 @@
 import styles from "../page.module.scss";
 import Link from "next/link"
 
+import ImageGallery from "../ui/gallery/gallery";
+
 const metaDescription = 'Check out the Ilan Bluestone&#039;s latest Instagram updates.'
 
 export const metadata = {
@@ -20,6 +22,9 @@ export default function Gallery() {
     <div className="container">
       <div className={styles.content}>
         <h1>Gallery</h1>
+
+        <ImageGallery />
+
         <p>Follow Ilan on <Link href="http://instagram.com/ibluestone" target="_blank" rel="noreferrer nofollow" >Instagram</Link></p>
       </div>
     </div>

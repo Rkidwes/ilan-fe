@@ -1,0 +1,83 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // background: transparent;
+  padding: 0;
+  border: none;
+  outline: none;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox {
+  display: flex;
+  align-items: center;
+}
+
+.imageContainer {
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+
+  img {
+    object-fit: contain;
+  }
+}
+
+.navButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  --x-position: 10px;
+
+  background: url("/ib-sprite.png") no-repeat;
+  background-size: 300px 300px;
+  background-position: var(--x-position) 0;
+  text-indent: 100px;
+  line-height: 100px;
+  overflow: hidden;
+
+  width: 30px;
+  height: 52px;
+  border-radius: 0;
+  transition: 0.2s;
+
+  &:hover {
+    --x-position: 5px;
+
+    &.navButtonNext {
+      --x-position: -105px;
+    }
+  }
+}
+
+.navButtonNext {
+  --x-position: -110px;
+}
+
+.closeButton {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  top: 0;
+  right: 0;
+  border: 1px solid var(--white);
+  border-radius: 4px;
+  background: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
