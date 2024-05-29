@@ -40,7 +40,7 @@ const Lightbox = ({ images, isOpen, onRequestClose, currentImageIndex }) => {
         </button>
         <div className={styles.imageContainer} onClick={onRequestClose}>
           <Image
-            src={images[currentIndex].src}
+            src={images[currentIndex].image}
             alt={images[currentIndex].alt || 'Image'}
             fill
           />

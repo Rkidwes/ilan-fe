@@ -37,7 +37,7 @@ const photos = [{
  }
 ]
 
-function ImageGallery() {
+function ImageGallery({ images }) {
 
   // const [index, setIndex] = React.useState(-1);
 
@@ -61,56 +61,20 @@ function ImageGallery() {
     
       <div className={styles.gallery}>
 
-        {photos.map((image, index) => (
-          <div key={index} onClick={() => handleImageClick(index)}>
-            <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1200px) 240px, 192px" />
+        {images.map((image, index) => (
+          <div key={image._id} onClick={() => handleImageClick(index)}>
+            <Image src={image.image} alt={image.alt} fill sizes="(min-width: 1200px) 240px, 192px" loading='eager' />
+            {image.caption && (<p>{image.caption}</p>)}
           </div>
         ))}
-
-        {/* {photos.map(({ src, alt }, index) => (
-          <div key={index} onClick={() => handleImageClick(index)}>
-            {console.log(index)}
-            <Image
-              fill
-              key={index}
-              src={src}
-              alt={alt}
-              // sizes="100vw"
-              // sizes="(max-width: 420px) calc(100vw - 24px), (max-width: 1023px) calc(100vw - 48px), (max-width: 1359px) calc(960px / 4), calc(1200px / 4)"
-              sizes="(min-width: 1200px) 240px, 192px"
-            />
-          </div>
-        ))} */}
       </div>
       
       <Lightbox
-        images={photos}
+        images={images}
         isOpen={lightboxOpen}
         onRequestClose={closeLightbox}
         currentImageIndex={currentImageIndex}
       />
-      
-      {/* <PhotoAlbum
-        layout="rows"
-        photos={slides}
-        targetRowHeight={150}
-        onClick={({ index: current }) => setIndex(current)}
-      /> */}
-
-      {/* <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        slides={slides}
-        render={{ slide: NextJsImage }}
-      /> */}
-
-      {/* <Lightbox
-        index={index}
-        slides={slides}
-        open={index >= 0}
-        close={() => setIndex(-1)}
-        render={{ slide: NextJsImage }}
-      /> */}
     </>
   );
 }
