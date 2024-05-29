@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './feature.module.scss';
 import clsx from 'clsx'
+import SubscribeForm from '../subscribeForm/subscribeForm'
+
 
 function Feature() {
   return (
@@ -10,12 +12,18 @@ function Feature() {
           <div>
             <h2>SUBSCRIBE TO MAILING LIST</h2>
 
-            <form className={styles.form}>
+
+
+            <SubscribeForm />
+
+
+
+            {/* Best example <form className={styles.form}>
               <input type="email" name="Email" className="email text nolabel" id="Form_NewsletterForm_Email" required="required" aria-required="true" placeholder="Enter your email..." />
               <button type="submit" name="action_doNewsletterSubmit" value="Subscribe" className="action" id="Form_NewsletterForm_action_doNewsletterSubmit">
                 <span>Subscribe</span>
               </button>
-            </form>
+            </form> */}
             {/* <form id="Form_NewsletterForm" action="/home/NewsletterForm" method="post" enctype="application/x-www-form-urlencoded" className="ajax-action form-newsletter" novalidate="novalidate">
               <p id="Form_NewsletterForm_error" className="message " style={{ display: 'none' }}></p>
               <fieldset>

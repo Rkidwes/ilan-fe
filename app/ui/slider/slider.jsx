@@ -114,7 +114,7 @@ const Slider = () => {
                 fill
                 sizes='100vw'
                 priority={index === 0}
-                lazyload={index === 2 || index === 3}
+                lazyload={(index === 2 || index === 3).toString()}
               />
             )
           }
@@ -146,7 +146,7 @@ const Slider = () => {
   const mainOptions = {
     type : 'slide',
     interval: 4000,
-    autoplay : true,
+    // autoplay : true,
     rewind : true,
     height: '100vh',
     breakpoints: {
