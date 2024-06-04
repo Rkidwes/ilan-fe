@@ -1,45 +1,11 @@
-// import Lightbox from "yet-another-react-lightbox";
-
 "use client";
 
 import { useState } from 'react';
-
+import Image from "next/image";
 import Lightbox from '../lightbox/lightbox'
-
 import styles from "./gallery.module.scss"
 
-import Image from "next/image";
-
-const photos = [{
-  src: '/Impulse-Ilan-Bluestone.jpg',
-  alt: 'Test alt'
-},
-  
-{
-  src: '/Above-and-Beyond-Steelyard-26th-May-2018-by-Luke-Dyson-IMG-1114.jpg',
-  alt: 'Antoher test'
-},
- {
-  src: '/Futuro.jpeg',
-  alt: 'This is a third test'
- },
- {
-  src: '/Tour-Shows-Ilan-Bluestone.jpg',
-  alt: 'This is a third test'
- },
- {
-  src: '/Tour-Shows-Ilan-Bluestone.jpg',
-  alt: 'This is a third test'
- },
- {
-  src: '/Tour-Shows-Ilan-Bluestone.jpg',
-  alt: 'This is a third test'
- }
-]
-
 function ImageGallery({ images }) {
-
-  // const [index, setIndex] = React.useState(-1);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

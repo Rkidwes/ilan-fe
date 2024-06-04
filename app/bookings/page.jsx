@@ -1,5 +1,5 @@
-import styles from "../page.module.scss";
 import EventForm from "../ui/eventForm/eventForm";
+import styles from "../page.module.scss";
 
 const metaDescription = 'Please visit this page to submit a booking enquiry with Ilan Bluestone.'
 
@@ -21,9 +21,7 @@ export default function Bookings() {
       <div className={styles.content}>
         <h1>Bookings</h1>
         <p className={styles.hero}>For enquiries, please fill in the form below.</p>
-
         <EventForm />      
-
       </div>
     </div>
   </main>

@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
+import clsx from 'clsx'
+import NavItems from '../navItems/navItems'
 import styles from './nav.module.scss';
 import btnStyles from '../base/button/button.module.scss';
-import clsx from 'clsx'
-
-import NavItems from '../navItems/navItems'
 
 function Nav() {
 
@@ -47,7 +46,7 @@ function Nav() {
 
   return (
     <nav className={styles.nav}>
-      <ul onClick={() => setIsMenuOpen(false)} className={clsx(styles.navList, { // onClick={handleClick}
+      <ul onClick={() => setIsMenuOpen(false)} className={clsx(styles.navList, {
         [styles.navListOpen]: isMenuOpen === true
       })}>
           <NavItems links={links} />

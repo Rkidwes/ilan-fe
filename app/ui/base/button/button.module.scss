@@ -57,25 +57,6 @@ button.btn {
         border-right: var(--borderWidth) solid var(--borderColor);
       }
     }
-
-    //   &.btnCtaOutline {
-    //     --borderColor: var(--brand);
-
-    //     border: var(--borderWidth) solid var(--borderColor);
-    //     border-right: none;
-    //     background-color: transparent;
-
-    //     &:hover {
-    //       --borderColor: var(--brandDark);
-    //     }
-
-    //     &:after {
-    //       background-color: transparent;
-    //       border: var(--borderWidth) solid var(--borderColor);
-    //       border-left: none;
-    //       top: calc(var(--borderWidth) * -1);
-    //     }
-    // }
   }
 
   &.btnOutline {
@@ -93,7 +74,6 @@ button.btn {
   &.btnToggle {
     aspect-ratio: 1;
     padding: 0;
-    // border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;

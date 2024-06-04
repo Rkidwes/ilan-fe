@@ -1,10 +1,10 @@
-import styles from "../page.module.scss";
-import tourStyles from "./tour.module.scss";
 import Link from "next/link"
 import Image from "next/image"
-import btnStyles from '../ui/base/button/button.module.scss';
 import clsx from 'clsx';
 import { format } from 'date-fns';
+import styles from "../page.module.scss";
+import btnStyles from '../ui/base/button/button.module.scss';
+import tourStyles from "./tour.module.scss";
 
 import { sanityFetch } from "../sanity/client";
 
@@ -22,21 +22,6 @@ export const metadata = {
     description: metaDescription
   }
 };
-
-const tours = [
-  {
-    date: '03 Mar 2023',
-    venue: 'ILAN BLUESTONE AT THE STEEL YARD (MARCH 3, 2023)',
-    location: 'London, UK',
-    ticketsLink: '#'
-  },
-  {
-    date: '03 Mar 2023',
-    venue: 'ILAN BLUESTONE AT THE STEEL YARD (MARCH 3, 2023)',
-    location: 'London, UK',
-    ticketsLink: '#'
-  }
-];
 
 export default async function Tour() {
 
