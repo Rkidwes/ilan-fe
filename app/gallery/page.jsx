@@ -30,13 +30,14 @@ export default async function Gallery() {
 
   const images = await sanityFetch({query: IMAGES_QUERY});
 
-  const updatedImages = images.map(item => ({
-    ...item,
-    image: urlFor(item.image).url()
-}));
+  let updatedImages = [];
 
-  const image1 = images[0].image
-  const imageUrl = urlFor(image1).url()
+  if (images.length > 0) {
+    updatedImages = images.map(item => ({
+      ...item,
+      image: urlFor(item.image).url()
+    }));
+  }
 
   return (
   <main id={styles.main}>
@@ -44,7 +45,7 @@ export default async function Gallery() {
       <div className={styles.content}>
         <h1>Gallery</h1>
 
-        <ImageGallery images={updatedImages} />
+        {images.length > 0 && <ImageGallery images={updatedImages} />}
 
         <p>Follow Ilan on <Link href="http://instagram.com/ibluestone" target="_blank" rel="noreferrer nofollow" >Instagram</Link></p>
       </div>
