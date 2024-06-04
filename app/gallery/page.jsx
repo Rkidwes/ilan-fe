@@ -11,7 +11,7 @@ const IMAGES_QUERY = `*[_type == "gallery"]{_id, image, alt, caption}|order(date
 
 const { projectId, dataset } = client.config();
 
-export const urlFor = (source) =>
+const urlFor = (source) =>
   projectId && dataset
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
