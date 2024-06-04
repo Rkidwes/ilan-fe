@@ -1,7 +1,5 @@
-import React from 'react'
 import Link from 'next/link'
 import styles from './button.module.scss';
-
 
 function Button({ link, children }) {
   return (

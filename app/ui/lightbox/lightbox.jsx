@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Modal from 'react-modal';
 import Image from 'next/image';
-import styles from './lightbox.module.scss';
+import Modal from 'react-modal';
 import clsx from 'clsx'
+import styles from './lightbox.module.scss';
 
 Modal.setAppElement('#body'); // Adjusted to bind the modal to the Next.js root element
 

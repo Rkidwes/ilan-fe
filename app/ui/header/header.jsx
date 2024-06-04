@@ -1,9 +1,8 @@
-import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Nav from '../nav/nav.jsx'
-import styles from './header.module.scss';
 import clsx from 'clsx'
+import styles from './header.module.scss';
 
 function Header() {
   return (

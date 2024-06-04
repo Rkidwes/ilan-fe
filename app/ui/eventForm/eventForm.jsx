@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import clsx from 'clsx'
 import styles from './eventForm.module.scss'
 import btnStyles from '../base/button/button.module.scss'
-import clsx from 'clsx'
 
 const EventForm = () => {
     const [message, setMessage] = useState('');

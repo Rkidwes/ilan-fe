@@ -8,8 +8,6 @@ import { sanityFetch } from "./sanity/client";
 
 const HOME_QUERY = `*[_type == "siteSettings"]{ hpTitle, hpText, hpLinkText, hpLinkURL }`;
 
-// Not sure if the below should be inside the function as it is on others - is it a significant difference?
-
 export default async function Home() {
 
   const content = await sanityFetch({query: HOME_QUERY});

@@ -1,11 +1,8 @@
-import styles from "../page.module.scss";
 import Link from "next/link"
-
-import ImageGallery from "../ui/gallery/gallery";
-
 import imageUrlBuilder from "@sanity/image-url";
-
 import { client, sanityFetch } from "../sanity/client";
+import ImageGallery from "../ui/gallery/gallery";
+import styles from "../page.module.scss";
 
 const IMAGES_QUERY = `*[_type == "gallery"]{_id, image, alt, caption}|order(date desc)`;
 

@@ -1,8 +1,7 @@
-import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import clsx from 'clsx';
 import { format } from 'date-fns'
+import clsx from 'clsx';
 import styles from './musicCard.module.scss';
 
 function MusicCard({ item, index }) {
@@ -15,7 +14,6 @@ function MusicCard({ item, index }) {
           <h4 itemProp="name" className={styles.musicName}>{ item.album.name }</h4>
           <p className={styles.musicDate}>Released: {format( item.album.release_date , "LLLL do, yyyy")}</p>
           <p className={styles.musicListen}>Listen:</p>
-          {/* {console.log('Link: ', item.external_urls.spotify)} */}
           <Link href={item.external_urls.spotify} className={clsx(styles.musicIconsLink, styles.musicIconsLinkSpotify)} target="_blank">
             Listen on Spotify
           </Link>

@@ -1,7 +1,7 @@
 'use client';
 
-import MusicCard from '../musicCard/musicCard'
 import { useState, useEffect } from 'react';
+import MusicCard from '../musicCard/musicCard'
 
 export default function MyComponent() {
   const [topTracks, setTopTracks] = useState([]);
