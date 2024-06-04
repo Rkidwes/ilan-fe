@@ -2,19 +2,21 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx';
+import { format } from 'date-fns'
 import styles from './musicCard.module.scss';
 
 function MusicCard({ item, index }) {
 
   return (
-    <div key={index} className={styles.musicCardWrapper} itemProp="track" itemScope itemtype="http://schema.org/MusicRecording">
+    <div key={index} className={styles.musicCardWrapper} itemProp="track" itemScope itemType="http://schema.org/MusicRecording">
       <div className={styles.musicCard}>
-        <Image src={`/${item.img}`} width="330" height="330" alt="" />
+        <Image src={item.album.images[0].url} width="330" height="330" alt={ item.album.name } />
         <div className={styles.musicDetails}>
-          <h4 itemprop="name" className={styles.musicName}>{ item.title }</h4>
-          <p className={styles.musicDate}>Released: { item.details }</p>
+          <h4 itemProp="name" className={styles.musicName}>{ item.album.name }</h4>
+          <p className={styles.musicDate}>Released: {format( item.album.release_date , "LLLL do, yyyy")}</p>
           <p className={styles.musicListen}>Listen:</p>
-          <Link href={ item.url } className={clsx(styles.musicIconsLink, styles.musicIconsLinkSpotify)} target="_blank">
+          {/* {console.log('Link: ', item.external_urls.spotify)} */}
+          <Link href={item.external_urls.spotify} className={clsx(styles.musicIconsLink, styles.musicIconsLinkSpotify)} target="_blank">
             Listen on Spotify
           </Link>
         </div>
