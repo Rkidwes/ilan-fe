@@ -5,10 +5,19 @@ import { format } from 'date-fns';
 import styles from "../page.module.scss";
 import btnStyles from '../ui/base/button/button.module.scss';
 import tourStyles from "./tour.module.scss";
-
-import { sanityFetch } from "../sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
+import { client, sanityFetch } from "../sanity/client";
+import BackgroundImage from "../ui/backgroundImage/backgroundImage"
 
 const EVENTS_QUERY = `*[_type == "event"]{_id, eventName, location, startDate, endDate, tickets}|order(date desc)`;
+const BG_QUERY = `*[_type == "siteSettings"]{tourBg, tourBgOpacity}`;
+
+const { projectId, dataset } = client.config();
+
+const urlFor = (source) =>
+  projectId && dataset
+    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    : null;
 
 const metaDescription = 'This page has all the latest information on Ilan Bluestone&#039;s tour dates and where to access tickets from.'
 
@@ -26,9 +35,19 @@ export const metadata = {
 export default async function Tour() {
 
   const events = await sanityFetch({query: EVENTS_QUERY});
+  const bgimage = await sanityFetch({query: BG_QUERY});
+
+  let bgImage
+
+  if (bgimage[0].tourBg != null) {
+    bgImage =  urlFor(bgimage[0].tourBg).url()
+  }
 
   return (
-  <main id={styles.main} style={{backgroundImage: "url('https://www.ilanbluestone.com/themes/ilan/img/new/bg-tour.jpg')"}}>
+  <main id={styles.main}>
+
+    {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].tourBgOpacity != null && bgimage[0].tourBgOpacity} />}
+
     <div className="container">
       <div className={styles.content}>
         <h1>Tour dates</h1>

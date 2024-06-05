@@ -2,9 +2,11 @@ import Link from "next/link"
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
 import ImageGallery from "../ui/gallery/gallery";
+import BackgroundImage from "../ui/backgroundImage/backgroundImage"
 import styles from "../page.module.scss";
 
 const IMAGES_QUERY = `*[_type == "gallery"]{_id, image, alt, caption}|order(date desc)`;
+const BG_QUERY = `*[_type == "siteSettings"]{galleryBg, galleryBgOpacity}`;
 
 const { projectId, dataset } = client.config();
 
@@ -29,8 +31,14 @@ export const metadata = {
 export default async function Gallery() {
 
   const images = await sanityFetch({query: IMAGES_QUERY});
+  const bgimage = await sanityFetch({query: BG_QUERY});
 
   let updatedImages = [];
+  let bgImage;
+
+  if (bgimage[0].galleryBg != null) {
+    bgImage =  urlFor(bgimage[0].galleryBg).url()
+  }
 
   if (images.length > 0) {
     updatedImages = images.map(item => ({
@@ -41,6 +49,9 @@ export default async function Gallery() {
 
   return (
   <main id={styles.main}>
+
+    {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].galleryBgOpacity != null && bgimage[0].galleryBgOpacity} />}
+
     <div className="container">
       <div className={styles.content}>
         <h1>Gallery</h1>
