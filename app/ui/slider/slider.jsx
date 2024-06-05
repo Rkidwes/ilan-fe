@@ -10,11 +10,10 @@ import clsx from 'clsx';
 import '@splidejs/react-splide/css';
 import './slider.scss';
 
-const Slider = () => {
+const Slider = ({slidesArray}) => {
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  // const [isFullscreen, setIsFullscreen] = useState(false);
 
   const mainRef = useRef(null);
   const videoRef = useRef(null);
@@ -39,105 +38,88 @@ const Slider = () => {
     }
   };
 
-  // const toggleFullscreen = () => {
-  //   if (!isFullscreen) {
-  //     if (videoRef.current.requestFullscreen) {
-  //       videoRef.current.requestFullscreen(); // Enter fullscreen mode
-  //     }
-  //     setIsFullscreen(true); // Update state to fullscreen
-  //     console.log(isFullscreen);
-  //   } else {
-  //     if (document.exitFullscreen) {
-  //       document.exitFullscreen(); // Exit fullscreen mode
-  //     }
-  //     setIsFullscreen(false); // Update state to normal mode
-  //     console.log(isFullscreen);
-  //   }
-  // };
-
-  const slides = [
-    {
-      title: "'Impulse', the brand new 2nd artist album",
-      subtitle: 'Released 7th May 2021',
-      linkText: 'Out now!!',
-      linkUrl: 'https://anjunabeats.ffm.to/impulse.gcn',
-      external: true,
-      media: '/Impulse-Ilan-Bluestone.jpg',
-      pagination: 'New Album',
-    },
-    {
-      title: 'ABGT 450',
-      subtitle: "See ilan's performance at The Drumsheds in London for ABGT 450",
-      linkText: 'Watch The Video',
-      linkUrl: 'https://youtu.be/0oy1aDdZWec',
-      external: true,
-      media: '/Ilan-Bluestone_Group-Therapy-450-Live-At-The-Drumsheds.mp4',
-      pagination: 'ABGT 450',
-    },
-    {
-      title: 'Tour Schedule',
-      subtitle: 'Find out if ilan Bluestone is performing at a venue near you',
-      linkText: 'Tour Schedule',
-      linkUrl: '/tour',
-      media: '/Above-and-Beyond-Steelyard-26th-May-2018-by-Luke-Dyson-IMG-1114.jpg',
-      pagination: 'Tour Schedule'
-    },
-    {
-      title: 'To night Feat. El Waves',
-      linkText: 'Out Now!!',
-      linkUrl: 'https://anjunabeats.ffm.to/ibelwtnt.gcn',
-      external: true,
-      media: '/Tonight-Ilan-Bluestone.jpg',
-      pagination: 'New single'
-    },
-  ]
+  // const slides = [
+  //   {
+  //     title: "'Impulse', the brand new 2nd artist album",
+  //     subtitle: 'Released 7th May 2021',
+  //     linkText: 'Out now!!',
+  //     linkUrl: 'https://anjunabeats.ffm.to/impulse.gcn',
+  //     external: true,
+  //     media: '/Impulse-Ilan-Bluestone.jpg',
+  //     pagination: 'New Album',
+  //   },
+  //   {
+  //     title: 'ABGT 450',
+  //     subtitle: "See ilan's performance at The Drumsheds in London for ABGT 450",
+  //     linkText: 'Watch The Video',
+  //     linkUrl: 'https://youtu.be/0oy1aDdZWec',
+  //     external: true,
+  //     media: '/Ilan-Bluestone_Group-Therapy-450-Live-At-The-Drumsheds.mp4',
+  //     pagination: 'ABGT 450',
+  //   },
+  //   {
+  //     title: 'Tour Schedule',
+  //     subtitle: 'Find out if ilan Bluestone is performing at a venue near you',
+  //     linkText: 'Tour Schedule',
+  //     linkUrl: '/tour',
+  //     media: '/Above-and-Beyond-Steelyard-26th-May-2018-by-Luke-Dyson-IMG-1114.jpg',
+  //     pagination: 'Tour Schedule'
+  //   },
+  //   {
+  //     title: 'To night Feat. El Waves',
+  //     linkText: 'Out Now!!',
+  //     linkUrl: 'https://anjunabeats.ffm.to/ibelwtnt.gcn',
+  //     external: true,
+  //     media: '/Tonight-Ilan-Bluestone.jpg',
+  //     pagination: 'New single'
+  //   },
+  // ]
 
   const renderSlides = () => (
     <SplideTrack>
-      {slides.map(({ title, subtitle, linkText, linkUrl, media, external }, index) => (
+      {slidesArray.map((slide, index) => (
         <SplideSlide key={index} className={clsx(`splide__slide__${index}`)}>
-          {media.endsWith('.mp4') ? 
+
+          {slide.assetType === 'video' ?
             (
               <>
-                {/* <SliderVideo videoRef={videoRef} media={media} isMuted={isMuted} index={index} /> */}
-                {/* onCanPlay={this.muted=`${isMuted}`} */}
+                {console.log('3333', slide.videoURL)}
                 <video ref={videoRef} autoPlay muted={isMuted} loop className="splide__video">
-                  <source src={media} type="video/mp4" />
+                  <source src={slide.videoURL} type="video/mp4" />
                 </video>
               </>
-            ) 
-            : 
+            )
+            :
             (
-              <Image 
-                src={media} 
-                alt={title} 
-                fill
-                sizes='100vw'
-                priority={index === 0}
-                lazyload={(index === 2 || index === 3).toString()}
-              />
+              <>
+                <Image 
+                  src={slide.imageURL} 
+                  alt={slide.headline} 
+                  fill
+                  sizes='100vw'
+                  priority={index === 0}
+                  lazyload={(index === 2 || index === 3).toString()}
+                />
+              </>
             )
           }
-          
+
           <div className='container'>
-            <h2>{title}</h2>
-            {subtitle && (<p>{subtitle}</p>)}
-            <p><Link href={linkUrl} target={external && `_blank`} rel={external && 'noopener noreferrer'}>{linkText}</Link></p>
-            {media.endsWith('.mp4') && (
+            <h2>{slide.headline}</h2>
+            {slide.subtitle && (<p>{slide.subtitle}</p>)}
+            <p><Link href={slide.linkURL} target={slide.external && `_blank`} rel={slide.external && 'noopener noreferrer'}>{slide.linkText}</Link></p>
+            {slide.assetType === 'video' && (
               <div className="sliderButtons">
                 <button onClick={togglePlayPause}>
                   <span className={clsx(`play`, isPlaying ? `playing` : `paused`)} />
                 </button>
-                {/*  onClick={() => setIsMuted(!isMuted)} */}
                 <button onClick={toggleMute}>
                   <span className={clsx('mute', isMuted ? `muted` : `unmuted`)} />
                 </button>
-                {/* <button onClick={toggleFullscreen}>
-                  <span className="fullscreen" />
-                </button> */}
               </div>
             )}
           </div>
+
         </SplideSlide>
       ))}
     </SplideTrack>
@@ -171,6 +153,7 @@ const Slider = () => {
   return (
     <>
       <div className="slider">
+      {/* {console.log('Slides Array: ', slidesArray)} */}
         {/* <Image 
           src={slides[0].media} 
           alt={slides[0].title} 
@@ -183,7 +166,7 @@ const Slider = () => {
           onPaginationMounted={ (splide) => { 
             const items = splide.Components.Pagination.items
             items.forEach(item => {
-              item.button.textContent = slides[item.page].pagination
+              item.button.textContent = slidesArray[item.page].slideTitle
             });
           }}
           options={mainOptions}

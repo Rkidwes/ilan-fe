@@ -3,20 +3,48 @@ import Link from "next/link"
 import clsx from 'clsx'
 import Slider from './ui/slider/slider'
 import {PortableText} from '@portabletext/react'
-
-import { sanityFetch } from "./sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
+import { client, sanityFetch } from "./sanity/client"
 
 const HOME_QUERY = `*[_type == "siteSettings"]{ hpTitle, hpText, hpLinkText, hpLinkURL }`;
+const SLIDER_QUERY = `*[_type == "siteSettings"]{ slide1->, slide2->, slide3->, slide4-> }`;
+
+const { projectId, dataset } = client.config();
+
+const urlFor = (source) =>
+  projectId && dataset
+    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    : null;
+
+function getFileUrl(ref) {
+  const [type, id, extension] = ref.split('-');
+  return `https://cdn.sanity.io/files/${projectId}/${dataset}/${id}.${extension}`;
+}
 
 export default async function Home() {
 
   const content = await sanityFetch({query: HOME_QUERY});
+  const sliderContent = await sanityFetch({query: SLIDER_QUERY});
   
   const { hpTitle, hpText, hpLinkText, hpLinkURL } = content[0]
 
+  let slidesArray = []
+  
+  sliderContent.forEach((slideGroup, index) => {
+    Object.entries(slideGroup).forEach(([key, slide]) => {
+      if (slide.assetType === 'image') {
+        slide.imageURL = urlFor(slide.image).url()
+      }
+      if (slide.assetType === 'video') {
+        slide.videoURL = getFileUrl(slide.video.asset._ref);
+      }
+      slidesArray.push(slide)
+    });
+  });
+
   return (
     <>
-      <Slider />
+      <Slider slidesArray={slidesArray} />
       <main id={styles.main} className={clsx(`fill-height`, styles.home)} style={{backgroundImage: "url('https://www.ilanbluestone.com/assets/Bio/ilan-bio-section.jpg')"}}>
         <div className="container">
           <div className={clsx(`${styles.content}`, `${styles.contentNarrow}`)}>
