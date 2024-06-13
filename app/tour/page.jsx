@@ -44,9 +44,9 @@ export default async function Tour() {
   }
 
   return (
-  <main id={styles.main}>
+  <main id={styles.main} style={{ backgroundImage: `url(${bgImage})`}}>
 
-    {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].tourBgOpacity != null && bgimage[0].tourBgOpacity} />}
+    {/* {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].tourBgOpacity != null && bgimage[0].tourBgOpacity} />} */}
 
     <div className="container">
       <div className={styles.content}>

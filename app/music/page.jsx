@@ -38,9 +38,9 @@ export default async function Music() {
   }
 
   return (
-  <main id={styles.main}>
+  <main id={styles.main} style={{ backgroundImage: `url(${bgImage})`}}>
 
-    {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].musicBgOpacity != null && bgimage[0].musicBgOpacity} />}
+    {/* {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].musicBgOpacity != null && bgimage[0].musicBgOpacity} />} */}
 
     <div className="container">
       <div className={styles.content}>
