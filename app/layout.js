@@ -72,14 +72,10 @@ export const metadata = {
       default: metaTitle,
     },
     description: metaDescription,
-    // images: [
-    //   {
-    //     url: '/og-image.jpg', // Same image as Open Graph
-    //     width: 1200,
-    //     height: 630,
-    //     alt: 'Ilan Bluestone',
-    //   },
-    // ],
+    images: {
+      url: 'https://raw.githubusercontent.com/gitdagray/my-blogposts/main/images/og-card.png',
+      alt: 'Preview image for the official website of Ilan Bluestone',
+    }
   },
 };
 
