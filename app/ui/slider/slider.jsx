@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
+import YouTube from 'react-youtube';
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,6 +10,15 @@ import clsx from 'clsx';
 
 import '@splidejs/react-splide/css';
 import './slider.scss';
+
+const videoOptions = {
+  playerVars: { // https://developers.google.com/youtube/player_parameters
+    autoplay: 1,
+    controls: 0,
+    rel: 0,
+    showinfo: 0
+  }
+};
 
 const Slider = ({slidesArray}) => {
 
@@ -152,6 +162,17 @@ const Slider = ({slidesArray}) => {
 
   return (
     <>
+      
+      <div className="video-container">
+        <YouTube
+          videoId="Z6FPJOgfCkc"
+          opts={videoOptions}
+          className="video-iframe"
+          // onReady={this._onReady}
+          // onEnd={this._onEnd}
+        />
+      </div>
+
       <div className="slider">
       {/* {console.log('Slides Array: ', slidesArray)} */}
         {/* <Image 
