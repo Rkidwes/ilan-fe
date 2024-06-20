@@ -37,9 +37,9 @@ export default async function Bookings() {
   }
 
   return (
-  <main id={styles.main}>
+  <main id={styles.main} style={{ backgroundImage: `url(${bgImage})`}}>
 
-    {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].bookingsBgOpacity != null && bgimage[0].bookingsBgOpacity} />}
+    {/* {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].bookingsBgOpacity != null && bgimage[0].bookingsBgOpacity} />} */}
 
     <div className="container">
       <div className={styles.content}>

@@ -48,9 +48,9 @@ export default async function Gallery() {
   }
 
   return (
-  <main id={styles.main}>
+  <main id={styles.main} style={{ backgroundImage: `url(${bgImage})`}}>
 
-    {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].galleryBgOpacity != null && bgimage[0].galleryBgOpacity} />}
+    {/* {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].galleryBgOpacity != null && bgimage[0].galleryBgOpacity} />} */}
 
     <div className="container">
       <div className={styles.content}>
