@@ -68,7 +68,9 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  line-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   right: 0;
   border: 1px solid var(--white);

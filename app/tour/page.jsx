@@ -7,9 +7,8 @@ import btnStyles from '../ui/base/button/button.module.scss';
 import tourStyles from "./tour.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
-import BackgroundImage from "../ui/backgroundImage/backgroundImage"
 
-const EVENTS_QUERY = `*[_type == "event"]{_id, eventName, location, startDate, endDate, tickets}|order(date desc)`;
+const EVENTS_QUERY = `*[_type == "event"]{_id, eventName, location, startDate, endDate, ticketsURL}|order(date desc)`;
 const BG_QUERY = `*[_type == "siteSettings"]{tourBg, tourBgOpacity}`;
 
 const { projectId, dataset } = client.config();
@@ -44,9 +43,9 @@ export default async function Tour() {
   }
 
   return (
-  <main id={styles.main} style={{ backgroundImage: `url(${bgImage})`}}>
+  <main id={styles.main}>
 
-    {/* {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].tourBgOpacity != null && bgimage[0].tourBgOpacity} />} */}
+    <div className={styles.bgWrapper} style={{ '--bg': `url(${bgImage})`, '--opacity': `${bgimage[0].tourBgOpacity}`}} />
 
     <div className="container">
       <div className={styles.content}>
@@ -64,9 +63,9 @@ export default async function Tour() {
                   </td>
                   <td className={tourStyles.venue}>{show.eventName}{show.location && <><br /> {`${show.location}`}</>}</td>
                   <td className={tourStyles.button}>
-                    <Link href={show.tickets} target="_blank" rel="noreferrer nofollow" className={clsx(btnStyles.btn, btnStyles.btnCta, btnStyles.btnOutline)}>
+                    {show.ticketsURL && <Link href={show.ticketsURL} target="_blank" rel="noreferrer nofollow" className={clsx(btnStyles.btn, btnStyles.btnCta, btnStyles.btnOutline)}>
                       <span>Get Tickets</span>
-                    </Link>
+                    </Link>}
                   </td>
                 </tr>
               )}

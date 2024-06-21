@@ -38,9 +38,9 @@ export default async function Music() {
   }
 
   return (
-  <main id={styles.main} style={{ backgroundImage: `url(${bgImage})`}}>
+  <main id={styles.main}>
 
-    {/* {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].musicBgOpacity != null && bgimage[0].musicBgOpacity} />} */}
+    <div className={styles.bgWrapper} style={{ '--bg': `url(${bgImage})`, '--opacity': `${bgimage[0].tourBgOpacity}`}} />
 
     <div className="container">
       <div className={styles.content}>

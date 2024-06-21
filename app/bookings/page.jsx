@@ -1,7 +1,6 @@
 import EventForm from "../ui/eventForm/eventForm";
 import styles from "../page.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
-import BackgroundImage from '../ui/backgroundImage/backgroundImage'
 import { client, sanityFetch } from "../sanity/client";
 
 const BG_QUERY = `*[_type == "siteSettings"]{bookingsBg, bookingsBgOpacity}`;
@@ -37,9 +36,9 @@ export default async function Bookings() {
   }
 
   return (
-  <main id={styles.main} style={{ backgroundImage: `url(${bgImage})`}}>
-
-    {/* {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].bookingsBgOpacity != null && bgimage[0].bookingsBgOpacity} />} */}
+  <main id={styles.main}>
+    
+    <div className={styles.bgWrapper} style={{ '--bg': `url(${bgImage})`, '--opacity': `${bgimage[0].bookingsBgOpacity}`}} />
 
     <div className="container">
       <div className={styles.content}>

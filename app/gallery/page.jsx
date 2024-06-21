@@ -2,7 +2,6 @@ import Link from "next/link"
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
 import ImageGallery from "../ui/gallery/gallery";
-import BackgroundImage from "../ui/backgroundImage/backgroundImage"
 import styles from "../page.module.scss";
 
 const IMAGES_QUERY = `*[_type == "gallery"]{_id, image, alt, caption}|order(date desc)`;
@@ -48,9 +47,9 @@ export default async function Gallery() {
   }
 
   return (
-  <main id={styles.main} style={{ backgroundImage: `url(${bgImage})`}}>
+  <main id={styles.main}>
 
-    {/* {bgImage && <BackgroundImage image={bgImage} opacity={bgimage[0].galleryBgOpacity != null && bgimage[0].galleryBgOpacity} />} */}
+    <div className={styles.bgWrapper} style={{ '--bg': `url(${bgImage})`, '--opacity': `${bgimage[0].tourBgOpacity}`}} />
 
     <div className="container">
       <div className={styles.content}>
