@@ -45,7 +45,7 @@ export default async function Home() {
   return (
     <>
       <Slider slidesArray={slidesArray} />
-      <main id={styles.main} className={clsx(`fill-height`, styles.home)} style={{backgroundImage: "url('/ilan-bio-section.jpg')"}}>
+      <main id={styles.main} className={clsx(`fill-height`, styles.home)} style={{'--bg': "url('/ilan-bio-section.jpg')"}}>
         <div className="container">
           <div className={clsx(`${styles.content}`, `${styles.contentNarrow}`)}>
             <h2>{hpTitle}</h2>

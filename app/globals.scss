@@ -132,6 +132,7 @@ body {
       width: 100%;
       max-width: var(--max-width);
       margin-inline: auto;
+      z-index: 1;
     }
   }
 
@@ -152,20 +153,20 @@ body {
 
 // Dark Mode Styles
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --max-width: 1200px;
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --max-width: 1200px;
 
-    --white: white;
-    --black: #333;
-    --brand: #2d54bc;
-    --brandDark: #244396;
-  }
+//     --white: white;
+//     --black: #333;
+//     --brand: #2d54bc;
+//     --brandDark: #244396;
+//   }
 
-  html {
-    color-scheme: dark;
-  }
-}
+//   html {
+//     color-scheme: dark;
+//   }
+// }
 
 // .splide,
 // .splide__track--draggable {

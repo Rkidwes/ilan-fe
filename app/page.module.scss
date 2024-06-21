@@ -3,11 +3,14 @@
   display: grid;
   flex: 1;
   position: relative;
+  background-repeat: no-repeat;
 
-  &.home {
+  &.home,
+  &.bio {
     align-items: center;
     background-position: 100% 0;
     background-size: auto 100%;
+    background-image: var(--bg, none);
   }
 
   .bgWrapper {
@@ -69,6 +72,31 @@
 
   & > *:last-child {
     margin-bottom: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  #main {
+    &.bio {
+      background-position: -200px center;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  #main {
+    &.home {
+      &:after {
+        content: "";
+        opacity: 0.5;
+        position: absolute;
+        inset: 0;
+        background-color: #000;
+      }
+    }
+    &.bio {
+      background-image: none;
+    }
   }
 }
 
