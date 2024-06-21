@@ -5,6 +5,7 @@ import ImageGallery from "../ui/gallery/gallery";
 import styles from "../page.module.scss";
 
 const IMAGES_QUERY = `*[_type == "gallery"]{_id, image, alt, caption}|order(date desc)`;
+const BG_QUERY = `*[_type == "siteSettings"]{galleryBg, galleryBgOpacity}`;
 
 const { projectId, dataset } = client.config();
 
@@ -29,22 +30,32 @@ export const metadata = {
 export default async function Gallery() {
 
   const images = await sanityFetch({query: IMAGES_QUERY});
+  const bgimage = await sanityFetch({query: BG_QUERY});
 
-  const updatedImages = images.map(item => ({
-    ...item,
-    image: urlFor(item.image).url()
-}));
+  let updatedImages = [];
+  let bgImage;
 
-  const image1 = images[0].image
-  const imageUrl = urlFor(image1).url()
+  if (bgimage[0].galleryBg != null) {
+    bgImage =  urlFor(bgimage[0].galleryBg).url()
+  }
+
+  if (images.length > 0) {
+    updatedImages = images.map(item => ({
+      ...item,
+      image: urlFor(item.image).url()
+    }));
+  }
 
   return (
   <main id={styles.main}>
+
+    <div className={styles.bgWrapper} style={{ '--bg': `url(${bgImage})`, '--opacity': `${bgimage[0].tourBgOpacity}`}} />
+
     <div className="container">
       <div className={styles.content}>
         <h1>Gallery</h1>
 
-        <ImageGallery images={updatedImages} />
+        {images.length > 0 && <ImageGallery images={updatedImages} />}
 
         <p>Follow Ilan on <Link href="http://instagram.com/ibluestone" target="_blank" rel="noreferrer nofollow" >Instagram</Link></p>
       </div>

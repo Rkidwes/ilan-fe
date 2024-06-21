@@ -1,5 +1,16 @@
 import EventForm from "../ui/eventForm/eventForm";
 import styles from "../page.module.scss";
+import imageUrlBuilder from "@sanity/image-url";
+import { client, sanityFetch } from "../sanity/client";
+
+const BG_QUERY = `*[_type == "siteSettings"]{bookingsBg, bookingsBgOpacity}`;
+
+const { projectId, dataset } = client.config();
+
+const urlFor = (source) =>
+  projectId && dataset
+    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    : null;
 
 const metaDescription = 'Please visit this page to submit a booking enquiry with Ilan Bluestone.'
 
@@ -14,9 +25,21 @@ export const metadata = {
   }
 };
 
-export default function Bookings() {
+export default async function Bookings() {
+
+  const bgimage = await sanityFetch({query: BG_QUERY});
+
+  let bgImage
+  
+  if (bgimage[0].bookingsBg != null) {
+    bgImage =  urlFor(bgimage[0].bookingsBg).url()
+  }
+
   return (
-  <main id={styles.main} style={{backgroundImage: "url('https://www.ilanbluestone.com/themes/ilan/img/new/bg-bookings.jpg')"}}>
+  <main id={styles.main}>
+    
+    <div className={styles.bgWrapper} style={{ '--bg': `url(${bgImage})`, '--opacity': `${bgimage[0].bookingsBgOpacity}`}} />
+
     <div className="container">
       <div className={styles.content}>
         <h1>Bookings</h1>

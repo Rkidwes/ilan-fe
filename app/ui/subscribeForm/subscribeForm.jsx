@@ -56,6 +56,8 @@ const SubscribeForm = () => {
 
   // Subscription successful! Please check your email to confirm.
 
+  // Forgotten Email Not Subscribed
+
 
   return (
     <div>

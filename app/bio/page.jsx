@@ -25,7 +25,7 @@ export default async function Bio() {
   
   const { biographyTitle, biography } = content[0]
   return (
-  <main id={styles.main} style={{backgroundImage: "url('https://www.ilanbluestone.com/assets/Bio/ilan-bio-section.jpg')"}}>
+  <main id={styles.main} style={{backgroundImage: "url('/ilan-bio-section.jpg')"}}>
     <div className="container">
       <div className={clsx(`${styles.content}`, `${styles.contentNarrow}`)}>
         <h1>{biographyTitle}</h1>
