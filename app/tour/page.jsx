@@ -8,7 +8,7 @@ import tourStyles from "./tour.module.scss";
 
 import { sanityFetch } from "../sanity/client";
 
-const EVENTS_QUERY = `*[_type == "event"]{_id, eventName, location, startDate, endDate, tickets}|order(date desc)`;
+const EVENTS_QUERY = `*[_type == "event"]{_id, eventName, location, startDate, endDate, ticketsURL}|order(date desc)`;
 
 const metaDescription = 'This page has all the latest information on Ilan Bluestone&#039;s tour dates and where to access tickets from.'
 
@@ -44,11 +44,11 @@ export default async function Tour() {
                     {show.endDate && <> to <br />{`${format(show.endDate, 'dd MMM yyyy')}`}</>}
                   </td>
                   <td className={tourStyles.venue}>{show.eventName}{show.location && <><br /> {`${show.location}`}</>}</td>
-                  <td className={tourStyles.button}>
-                    <Link href={show.tickets} target="_blank" rel="noreferrer nofollow" className={clsx(btnStyles.btn, btnStyles.btnCta, btnStyles.btnOutline)}>
+                  {show.ticketsURL && <td className={tourStyles.button}>
+                    <Link href={show.ticketsURL} target="_blank" rel="noreferrer nofollow" className={clsx(btnStyles.btn, btnStyles.btnCta, btnStyles.btnOutline)}>
                       <span>Get Tickets</span>
                     </Link>
-                  </td>
+                  </td>}
                 </tr>
               )}
               </tbody>
