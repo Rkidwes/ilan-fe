@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 
 import Image from 'next/image'
@@ -38,42 +38,24 @@ const Slider = ({slidesArray}) => {
     }
   };
 
-  // const slides = [
-  //   {
-  //     title: "'Impulse', the brand new 2nd artist album",
-  //     subtitle: 'Released 7th May 2021',
-  //     linkText: 'Out now!!',
-  //     linkUrl: 'https://anjunabeats.ffm.to/impulse.gcn',
-  //     external: true,
-  //     media: '/Impulse-Ilan-Bluestone.jpg',
-  //     pagination: 'New Album',
-  //   },
-  //   {
-  //     title: 'ABGT 450',
-  //     subtitle: "See ilan's performance at The Drumsheds in London for ABGT 450",
-  //     linkText: 'Watch The Video',
-  //     linkUrl: 'https://youtu.be/0oy1aDdZWec',
-  //     external: true,
-  //     media: '/Ilan-Bluestone_Group-Therapy-450-Live-At-The-Drumsheds.mp4',
-  //     pagination: 'ABGT 450',
-  //   },
-  //   {
-  //     title: 'Tour Schedule',
-  //     subtitle: 'Find out if ilan Bluestone is performing at a venue near you',
-  //     linkText: 'Tour Schedule',
-  //     linkUrl: '/tour',
-  //     media: '/Above-and-Beyond-Steelyard-26th-May-2018-by-Luke-Dyson-IMG-1114.jpg',
-  //     pagination: 'Tour Schedule'
-  //   },
-  //   {
-  //     title: 'To night Feat. El Waves',
-  //     linkText: 'Out Now!!',
-  //     linkUrl: 'https://anjunabeats.ffm.to/ibelwtnt.gcn',
-  //     external: true,
-  //     media: '/Tonight-Ilan-Bluestone.jpg',
-  //     pagination: 'New single'
-  //   },
-  // ]
+  useEffect(() => {
+    const updateVideoSrcAttributes = () => {
+      // Select all <source> elements inside <video> elements with class .splide__video
+      const sourceElements = document.querySelectorAll('.splide__video source');
+
+      sourceElements.forEach(source => {
+        // Check if the source element has a data-src attribute and no src attribute
+        if (source.hasAttribute('data-src') && !source.getAttribute('src')) {
+          // Set the src attribute to the value of the data-src attribute
+          source.setAttribute('src', source.getAttribute('data-src'));
+          source.closest('video').load();
+        }
+      });
+    };
+
+    // Run the function to update the source elements after DOM content is loaded
+    updateVideoSrcAttributes();
+  }, []);
 
   const renderSlides = () => (
     <SplideTrack>
@@ -83,9 +65,14 @@ const Slider = ({slidesArray}) => {
           {slide.assetType === 'video' ?
             (
               <>
-                {console.log('3333', slide.videoURL)}
+                {console.log('3333', slide.videoURL, index)}
                 <video ref={videoRef} autoPlay muted={isMuted} loop className="splide__video">
-                  <source src={slide.videoURL} type="video/mp4" />
+                  {/* <source src={slide.videoURL} type="video/mp4" /> */}
+                  {index === 0 ? (
+                    <source src={slide.videoURL} type="video/mp4" />
+                  ) : (
+                    <source data-src={slide.videoURL} type="video/mp4" />
+                  )}
                 </video>
               </>
             )
@@ -127,8 +114,8 @@ const Slider = ({slidesArray}) => {
 
   const mainOptions = {
     type : 'slide',
-    interval: 4000,
-    // autoplay : true,
+    interval: 5000,
+    autoplay : true,
     rewind : true,
     height: '100vh',
     breakpoints: {

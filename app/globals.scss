@@ -5,13 +5,16 @@
   --narrow-width: 460px;
   --gap: 48px;
 
+  --blue: #13bbff;
+  --darkBlue: #0089c0;
+
   --white: white;
   --black: #000;
   --darkGrey: #101010;
   --lightGrey: #ccc;
   --grey: #282828;
-  --brand: #13bbff;
-  --brandDark: #0089c0;
+  --brand: var(--blue);
+  --brandDark: var(--darkBlue);
   --accent: #fff333;
 
   --fs-xlarge: 2rem;
@@ -21,6 +24,13 @@
   --fs-xsmall: 0.6rem;
 
   --fonts: var(--font-muli), "Trebuchet MS", Arial, sans-serif;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --brand: color-mix(in srgb, var(--blue) 65%, black);
+    --brandDark: color-mix(in srgb, var(--darkBlue) 65%, black);
+  }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1359px) {
