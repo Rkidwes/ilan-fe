@@ -85,7 +85,7 @@ const Slider = ({slidesArray}) => {
                   fill
                   sizes='100vw'
                   priority={index === 0}
-                  // lazyload={index !== 0}
+                  lazyload={index !== 0}
                   // lazyload={(index === 2 || index === 3).toString()}
                   // data-splide-lazy={slide.imageURL}
                 />
