@@ -86,6 +86,7 @@ const Slider = ({slidesArray}) => {
                   sizes='100vw'
                   priority={index === 0}
                   lazyload={(index === 2 || index === 3).toString()}
+                  data-splide-lazy={slide.imageURL}
                 />
               </>
             )
@@ -118,6 +119,7 @@ const Slider = ({slidesArray}) => {
     autoplay : true,
     rewind : true,
     height: '100vh',
+    lazyload: 'sequential',
     breakpoints: {
       679: {
         height: '540px',
