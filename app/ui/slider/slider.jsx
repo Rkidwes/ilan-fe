@@ -80,13 +80,14 @@ const Slider = ({slidesArray}) => {
             (
               <>
                 <Image 
-                  src={slide.imageURL} 
+                  src={slide.imageURL}
                   alt={slide.headline} 
                   fill
                   sizes='100vw'
                   priority={index === 0}
-                  lazyload={(index === 2 || index === 3).toString()}
-                  data-splide-lazy={slide.imageURL}
+                  // lazyload={index !== 0}
+                  // lazyload={(index === 2 || index === 3).toString()}
+                  // data-splide-lazy={slide.imageURL}
                 />
               </>
             )
