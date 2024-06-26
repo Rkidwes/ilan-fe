@@ -9,7 +9,8 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ["cdn.sanity.io", "i.scdn.co", "via.placeholder.com"]
+    formats: ['image/avif', 'image/webp'],
+    domains: ["cdn.sanity.io", "i.scdn.co", "via.placeholder.com"],
   }
 };
 
