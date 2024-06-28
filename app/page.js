@@ -42,6 +42,7 @@ export default async function Home() {
     });
   });
 
+  
   return (
     <>
       <Slider slidesArray={slidesArray} />
