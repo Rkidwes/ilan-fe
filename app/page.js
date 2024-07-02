@@ -11,7 +11,6 @@ const SLIDER_QUERY = `*[_type == "siteSettings"]{ slide1->, slide2->, slide3->, 
 
 const { projectId, dataset } = client.config();
 
-
 const urlFor = (source) =>
   projectId && dataset
     ? imageUrlBuilder({ projectId, dataset }).image(source)
