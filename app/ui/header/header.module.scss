@@ -1,40 +1,30 @@
 .header {
-  --padding: 12px;
-
-  font-family: var(--sans);
-  font-size: var(--fs-medium);
-  font-weight: light;
-
+  --headerHeight: 100px;
+  background-color: hsla(0, 0%, 6%, 0.75);
+  flex: 0 0 var(--headerHeight);
+  width: 100%;
+  position: sticky;
+  top: 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  position: relative;
-  padding-block: 24px;
+  z-index: 10;
+  margin-bottom: calc(var(--headerHeight) * -1);
 }
 
-.nlpLogo {
-  font-size: 0;
-
-  svg {
-    width: 30vw;
-    max-width: 290px;
-    color: var(--brand);
-  }
+.headerInner {
+  display: flex;
+  align-items: center;
 }
 
-@media screen and (min-width: 768px) {
+.iBLogo {
+  width: 100%;
+  height: auto;
+  max-width: 162px;
+  padding-right: 24px;
 }
 
-@media screen and (max-width: 890px) {
+@media screen and (max-width: 820px) {
   .header {
-    padding-block: 12px;
-  }
-
-  .nlpLogo {
-    svg {
-      height: 50px;
-      width: auto;
-      color: var(--brand);
-    }
+    --headerHeight: 70px;
   }
 }

@@ -1,0 +1,81 @@
+a.btn,
+button.btn {
+  --borderWidth: 2px;
+  --borderColor: var(--brandDark);
+
+  border: none;
+  background-color: var(--brand);
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding-inline: 20px;
+  color: var(--white);
+  text-transform: uppercase;
+  text-decoration: none !important;
+  border-bottom: 2px solid var(--borderColor);
+  transition: all 0.2s;
+
+  &.btnCta {
+    padding-inline: 20px 10px;
+    position: relative;
+    margin-right: 20px;
+
+    span {
+      z-index: 2;
+      position: relative;
+    }
+
+    &:hover {
+      text-decoration: none;
+      background-color: var(--brandDark);
+
+      &:after {
+        background-color: var(--brandDark);
+      }
+    }
+
+    &:after {
+      transition: all 0.2s;
+      position: absolute;
+      background-color: var(--brand);
+      inset: 0 -10px calc(var(--borderWidth) * -1);
+      left: unset;
+      content: "";
+      width: 20px;
+      transform: skewX(153deg);
+      border-bottom: var(--borderWidth) solid var(--borderColor);
+      border-right: var(--borderWidth) solid var(--borderColor);
+    }
+
+    &.btnOutline {
+      border-right: 0;
+      &:after {
+        top: calc(var(--borderWidth) * -1);
+        background-color: transparent;
+        border-top: var(--borderWidth) solid var(--borderColor);
+        border-right: var(--borderWidth) solid var(--borderColor);
+      }
+    }
+  }
+
+  &.btnOutline {
+    --borderColor: var(--brand);
+    background: none;
+    color: var(--white);
+    border: 2px solid var(--borderColor);
+
+    &:hover {
+      --borderColor: var(--brandDark);
+      background: none;
+    }
+  }
+
+  &.btnToggle {
+    aspect-ratio: 1;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
@@ -9,7 +8,6 @@ import styles from './navItems.module.scss';
 function NavItems({ links }) {
 
   const pathname = usePathname();
-  console.log(pathname)
 
   return (
     <>
@@ -19,7 +17,7 @@ function NavItems({ links }) {
           <Link href={link.linkHref} className={clsx(styles.navLink, {
               [styles.navLinkActive]: pathname === link.linkHref
             })}
-          >{link.linkText}</Link>
+          ><span>{link.linkText}</span></Link>
         </li>
       ))}
     </>

@@ -1,0 +1,12 @@
+.musicCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  gap: 24px;
+}
+
+@media screen and (max-width: 500px) {
+  .musicCards {
+    grid-template-columns: 1fr;
+  }
+}

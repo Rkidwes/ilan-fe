@@ -1,0 +1,268 @@
+.slider {
+  padding: 0;
+  flex: 0 0 100%;
+  position: relative;
+
+  // & > * {
+  //   background-position: center;
+  //   background-size: cover;
+  // }
+
+  &::after {
+    content: "";
+    background-image: linear-gradient(
+      0deg,
+      hsla(0, 0%, 6%, 0.75) 0,
+      transparent
+    );
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+}
+
+.fallbackImage {
+  object-fit: cover;
+}
+
+.splide {
+  z-index: 2;
+}
+
+.splide__slide {
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: "";
+    background-image: linear-gradient(
+      0deg,
+      hsla(0, 0%, 6%, 0.75) 0,
+      transparent
+    );
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .container {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    padding: 12px;
+    position: relative;
+
+    & > * {
+      color: var(--white);
+    }
+
+    a {
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 0.33em;
+      transition: 0.1s;
+
+      &:hover {
+        text-decoration-color: var(--grey);
+      }
+    }
+  }
+}
+
+.splide__arrow {
+  --x-position: 10px;
+
+  background: url("/ib-sprite.png") no-repeat;
+  background-size: 300px 300px;
+  background-position: var(--x-position) 0;
+  text-indent: 100px;
+  line-height: 100px;
+  overflow: hidden;
+
+  width: 30px;
+  height: 52px;
+  border-radius: 0;
+  transition: 0.2s;
+
+  &:hover {
+    --x-position: 5px;
+
+    &.splide__arrow--next {
+      --x-position: -105px;
+    }
+  }
+}
+
+.splide__arrow--next {
+  --x-position: -110px;
+}
+
+.splide__pagination--custom {
+  // display: grid;
+  // grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  align-items: stretch;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  gap: 24px;
+  bottom: 5vh;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding-top: 12px;
+
+  li {
+    flex: 1;
+  }
+
+  .splide__pagination__page {
+    padding: 12px 6px;
+    background-color: transparent;
+    border-radius: 0;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    opacity: 1;
+    margin: 0;
+    position: relative;
+    color: var(--white);
+    text-transform: uppercase;
+    font-size: var(--fs-medium);
+    &:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      bottom: unset;
+      height: 1px;
+      background-color: var(--white);
+    }
+
+    &.is-active {
+      transform: scale(1);
+
+      &:after {
+        height: 2px;
+        background-color: var(--accent);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .splide__slide {
+    .container {
+      & > * {
+        margin-left: 60px;
+        width: 450px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .slider {
+    flex: 0 0 720px;
+  }
+}
+
+@media screen and (min-width: 680px) and (max-width: 1023px) {
+  .splide__slide {
+    .container {
+      width: 450px;
+      margin-inline: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 679px) {
+  .slider {
+    flex: 0 0 540px;
+  }
+  .splide__arrows {
+    display: none;
+  }
+
+  .splide__pagination--custom {
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .splide__pagination--custom {
+    padding-inline: 12px;
+    gap: 12px;
+
+    .splide__pagination__page {
+      font-size: var(--fs-small);
+    }
+  }
+}
+// background: #ccc;
+// border: 0;
+// border-radius: 50%;
+// display: inline-block;
+// height: 8px;
+// margin: 3px;
+// opacity: .7;
+// padding: 0;
+// position: relative;
+// transition: transform .2s linear;
+// width: 8px;
+
+.splide__video {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.sliderButtons {
+  display: flex;
+  gap: 12px;
+  button {
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0);
+    border: 2px solid var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+
+    span {
+      width: 20px;
+      height: 20px;
+      background: url("/ib-sprite.png") no-repeat;
+      background-size: 250px 250px;
+
+      &.play {
+        background-position: -81px -48px;
+        &.paused {
+          background-position: -123px -48px;
+          width: 18px;
+        }
+      }
+
+      &.mute {
+        background-position: 2px -48px;
+        &.unmuted {
+          background-position: -28px -48px;
+        }
+      }
+
+      &.fullscreen {
+        background-position: -176px -48px;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+}

@@ -8,6 +8,10 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    domains: ["cdn.sanity.io", "i.scdn.co", "via.placeholder.com"],
+  }
 };
 
 export default nextConfig;

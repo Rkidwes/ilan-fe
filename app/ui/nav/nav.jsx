@@ -1,37 +1,35 @@
 'use client';
 
-import React, { useState } from 'react'
-import styles from './nav.module.scss';
+import { useState } from 'react'
+import Link from 'next/link'
 import clsx from 'clsx'
-
 import NavItems from '../navItems/navItems'
+import styles from './nav.module.scss';
+import btnStyles from '../base/button/button.module.scss';
 
 function Nav() {
 
   const links = [
     {
-      linkText: 'About',
-      linkHref: '/about',
+      linkText: 'Bio',
+      linkHref: '/bio',
     },
     {
-      linkText: 'Therapy',
-      linkHref: '/therapy',
+      linkText: 'Tour',
+      linkHref: '/tour',
     },
     {
-      linkText: 'Fees',
-      linkHref: '/fees',
+      linkText: 'Gallery',
+      linkHref: '/gallery',
     },
     {
-      linkText: 'Testimonials',
-      linkHref: '/testimonials',
+      linkText: 'Music',
+      linkHref: '/music',
     },
     {
-      linkText: 'Blog',
-      linkHref: '/blog',
-    },
-    {
-      linkText: 'Contact',
-      linkHref: '/contact',
+      linkText: 'Merch',
+      linkHref: 'https://ilanbluestore.com',
+      linkTarget: '_blank'
     }
   ]
 
@@ -48,12 +46,21 @@ function Nav() {
 
   return (
     <nav className={styles.nav}>
-      <button onClick={handleClick} className={styles.navToggle}>X</button>
-      <ul className={clsx(styles.navList, {
+      <ul onClick={() => setIsMenuOpen(false)} className={clsx(styles.navList, {
         [styles.navListOpen]: isMenuOpen === true
       })}>
           <NavItems links={links} />
       </ul>
+      <div className={styles.navButtons}>
+        <Link href="/bookings" className={clsx(btnStyles.btn, btnStyles.btnCta)}><span>Bookings</span></Link>
+        <button onClick={handleClick} className={clsx(styles.navToggle, btnStyles.btn, btnStyles.btnToggle, btnStyles.btnOutline, isMenuOpen ? styles.navListOpen : '')}>
+          <svg viewBox="0 0 46 40" width="46" height="40" fill="#fff" className={styles.navToggleIcon}>
+            <rect width="46" height="4"></rect>
+            <rect y="18" width="46" height="4"></rect>
+            <rect y="36" width="46" height="4"></rect>
+          </svg>
+        </button>
+      </div>
     </nav>
   );
 }

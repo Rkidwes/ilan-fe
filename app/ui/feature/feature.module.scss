@@ -1,0 +1,31 @@
+.feature {
+  background-color: var(--darkGrey);
+  color: var(--white);
+  padding-block: 32px;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.featureInner {
+  display: grid;
+  gap: 24px;
+}
+
+// Form
+
+// Spotify
+
+.spotify {
+  outline: 2px solid var(--white);
+  outline-offset: -2px;
+  border-radius: 12px;
+}
+
+@media screen and (min-width: 769px) {
+  .featureInner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
