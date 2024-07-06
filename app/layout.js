@@ -52,14 +52,14 @@ export const metadata = {
     description: metaDescription,
     siteName: 'Ilan Bluestone Official Site',
     locale: 'en_GB',
-    // images: [
-    //   {
-    //     url: '/og-image.jpg', // URL to the image
-    //     width: 1200,
-    //     height: 630,
-    //     alt: 'Ilan Bluestone',
-    //   },
-    // ],
+    images: [
+      {
+        url: '/og-image.jpg', // URL to the image
+        width: 1200,
+        height: 630,
+        alt: 'Ilan Bluestone',
+      },
+    ],
   },
 
   // Twitter Card Metadata
