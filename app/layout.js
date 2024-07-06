@@ -54,10 +54,10 @@ export const metadata = {
     locale: 'en_GB',
     images: [
       {
-        url: '/og-image.jpg', // URL to the image
+        url: '/ilan-bluestone-preview.webp',
         width: 1200,
         height: 630,
-        alt: 'Ilan Bluestone',
+        alt: 'Preview image for the official website of Ilan Bluestone',
       },
     ],
   },
@@ -73,7 +73,7 @@ export const metadata = {
     },
     description: metaDescription,
     images: {
-      url: 'https://raw.githubusercontent.com/gitdagray/my-blogposts/main/images/og-card.png',
+      url: '/ilan-bluestone-preview.webp',
       alt: 'Preview image for the official website of Ilan Bluestone',
     }
   },
