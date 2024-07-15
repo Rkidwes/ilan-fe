@@ -11,8 +11,8 @@ export async function POST(request) {
 
     const { data, error } = await resend.emails.send({
       from: 'Website Enquiry <onboarding@resend.dev>',
-      to: ['delivered@resend.dev'],
-      // to: ['admin@ilanbluestone.com'],
+      // to: ['delivered@resend.dev'],
+      to: ['admin@ilanbluestone.com'],
       subject: `New Enquiry || ${new Date().toLocaleDateString('en-us', { weekday:"short", year:"numeric", month:"short", day:"numeric"}) }`,
       react: EmailTemplate({ 
         name,
