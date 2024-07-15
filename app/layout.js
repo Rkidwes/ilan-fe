@@ -52,14 +52,14 @@ export const metadata = {
     description: metaDescription,
     siteName: 'Ilan Bluestone Official Site',
     locale: 'en_GB',
-    // images: [
-    //   {
-    //     url: '/og-image.jpg', // URL to the image
-    //     width: 1200,
-    //     height: 630,
-    //     alt: 'Ilan Bluestone',
-    //   },
-    // ],
+    images: [
+      {
+        url: '/ilan-bluestone-preview.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Preview image for the official website of Ilan Bluestone',
+      },
+    ],
   },
 
   // Twitter Card Metadata
@@ -72,14 +72,10 @@ export const metadata = {
       default: metaTitle,
     },
     description: metaDescription,
-    // images: [
-    //   {
-    //     url: '/og-image.jpg', // Same image as Open Graph
-    //     width: 1200,
-    //     height: 630,
-    //     alt: 'Ilan Bluestone',
-    //   },
-    // ],
+    images: {
+      url: '/ilan-bluestone-preview.webp',
+      alt: 'Preview image for the official website of Ilan Bluestone',
+    }
   },
 };
 
