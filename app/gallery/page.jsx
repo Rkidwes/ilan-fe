@@ -1,10 +1,10 @@
 import Link from "next/link"
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
-import ImageGallery from "../ui/gallery/gallery";
+// import ImageGallery from "../ui/gallery/gallery";
 import styles from "../page.module.scss";
 
-const IMAGES_QUERY = `*[_type == "gallery"]{_id, image, alt, caption}|order(date desc)`;
+// const IMAGES_QUERY = `*[_type == "gallery"]{_id, image, alt, caption}|order(date desc)`;
 const BG_QUERY = `*[_type == "siteSettings"]{galleryBg, galleryBgOpacity}`;
 
 const { projectId, dataset } = client.config();
@@ -29,7 +29,7 @@ export const metadata = {
 
 export default async function Gallery() {
 
-  const images = await sanityFetch({query: IMAGES_QUERY});
+  // const images = await sanityFetch({query: IMAGES_QUERY});
   const bgimage = await sanityFetch({query: BG_QUERY});
 
   let updatedImages = [];
@@ -39,12 +39,12 @@ export default async function Gallery() {
     bgImage =  urlFor(bgimage[0].galleryBg).url()
   }
 
-  if (images.length > 0) {
-    updatedImages = images.map(item => ({
-      ...item,
-      image: urlFor(item.image).url()
-    }));
-  }
+  // if (images.length > 0) {
+  //   updatedImages = images.map(item => ({
+  //     ...item,
+  //     image: urlFor(item.image).url()
+  //   }));
+  // }
 
   return (
   <main id={styles.main}>
@@ -55,7 +55,7 @@ export default async function Gallery() {
       <div className={styles.content}>
         <h1>Gallery</h1>
 
-        {images.length > 0 && <ImageGallery images={updatedImages} />}
+        {/* {images.length > 0 && <ImageGallery images={updatedImages} />} */}
 
         <p>Follow Ilan on <Link href="http://instagram.com/ibluestone" target="_blank" rel="noreferrer nofollow" >Instagram</Link></p>
       </div>

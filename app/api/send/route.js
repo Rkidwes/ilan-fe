@@ -11,7 +11,8 @@ export async function POST(request) {
 
     const { data, error } = await resend.emails.send({
       from: 'Website Enquiry <onboarding@resend.dev>',
-      to: ['admin@ilanbluestone.com'],
+      to: ['delivered@resend.dev'],
+      // to: ['admin@ilanbluestone.com'],
       subject: `New Enquiry || ${new Date().toLocaleDateString('en-us', { weekday:"short", year:"numeric", month:"short", day:"numeric"}) }`,
       react: EmailTemplate({ 
         name,
@@ -23,11 +24,13 @@ export async function POST(request) {
     });
 
     if (error) {
-      return Response.json({ error }, { status: 500 });
+      console.error('Error sending email:', error);
+      return Response.json({ error: error.message }, { status: 500 });
     }
 
     return Response.json(data);
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    console.error('Unexpected error:', error);
+    return Response.json({ error: 'An unexpected error occurred' }, { status: 500 });
   }
 }
