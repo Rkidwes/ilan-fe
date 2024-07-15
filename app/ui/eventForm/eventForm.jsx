@@ -25,9 +25,9 @@ const EventForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         console.log('Form submitted:', formData);
-
+    
         try {
             const res = await fetch('/api/send', {
               method: 'POST',
@@ -38,7 +38,7 @@ const EventForm = () => {
             });
       
             const data = await res.json();
-
+    
             if (res.ok) {
                 setMessage({ __html: '<p>Your submission has been successful! <br>We will be in touch as soon as possible.</p>'});
                 setFormData({
@@ -47,16 +47,15 @@ const EventForm = () => {
                     phone: '',
                     eventName: '',
                     details: ''
-                })
+                });
             } else {
-              setMessage('An error occurred.');
-              console.log('Error in submission', error)
+              setMessage(`An error occurred: ${data.error || 'Unknown error'}`);
+              console.error('Error in submission', data.error);
             }
           } catch (error) {
-            setMessage('An error occurred.');
-            console.log('Unsent error', error)
+            setMessage('An error occurred while submitting the form.');
+            console.error('Fetch error', error);
           }
-
     };
 
     return (
