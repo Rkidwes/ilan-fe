@@ -7,8 +7,9 @@ import btnStyles from '../ui/base/button/button.module.scss';
 import tourStyles from "./tour.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
+import { eventsQuery } from "../sanity/query"
 
-const EVENTS_QUERY = `*[_type == "event"]{_id, eventName, location, startDate, endDate, ticketsURL}|order(date desc)`;
+// const EVENTS_QUERY = `*[_type == "event"]{_id, eventName, location, startDate, endDate, ticketsURL}|order(date desc)`;
 const BG_QUERY = `*[_type == "siteSettings"]{tourBg, tourBgOpacity}`;
 
 const { projectId, dataset } = client.config();
@@ -33,7 +34,13 @@ export const metadata = {
 
 export default async function Tour() {
 
-  const events = await sanityFetch({query: EVENTS_QUERY});
+  // const events = await sanityFetch({query: EVENTS_QUERY});
+
+  const events = await sanityFetch({
+    query: eventsQuery,
+    tags: ["event"],
+  });
+
   const bgimage = await sanityFetch({query: BG_QUERY});
 
   let bgImage
