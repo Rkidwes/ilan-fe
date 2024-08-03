@@ -5,7 +5,9 @@ import Slider from './ui/slider/slider'
 import {PortableText} from '@portabletext/react'
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "./sanity/client"
-import { sliderQuery, homeQuery } from "./sanity/query"
+import { homeQuery } from "./sanity/query"
+
+const SLIDER_QUERY = `*[_type == "siteSettings"]{ slide1->, slide2->, slide3->, slide4-> }`;
 
 const { projectId, dataset } = client.config();
 
@@ -27,9 +29,14 @@ export default async function Home() {
   });
 
   const sliderContent = await sanityFetch({
-    query: sliderQuery,
-    tags: ["siteSettings"],
+    query: SLIDER_QUERY,
+    tags: ["slide", "siteSettings"]
   });
+
+  // const sliderContent = await sanityFetch({
+  //   query: sliderQuery,
+  //   tags: ["slide"],
+  // });
   
   const { hpTitle, hpText, hpLinkText, hpLinkURL } = content[0]
 
