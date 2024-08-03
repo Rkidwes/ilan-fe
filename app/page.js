@@ -21,6 +21,7 @@ function getFileUrl(ref) {
   return `https://cdn.sanity.io/files/${projectId}/${dataset}/${id}.${extension}`;
 }
 
+
 export default async function Home() {
 
   const content = await sanityFetch({query: HOME_QUERY});
