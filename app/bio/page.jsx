@@ -21,7 +21,10 @@ export const metadata = {
 
 export default async function Bio() {
 
-  const content = await sanityFetch({query: BIO_QUERY});
+  const content = await sanityFetch({
+    query: BIO_QUERY,
+    tags: ["siteSettings"]
+  });
   
   const { biographyTitle, biography } = content[0]
   return (

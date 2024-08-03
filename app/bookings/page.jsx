@@ -27,7 +27,10 @@ export const metadata = {
 
 export default async function Bookings() {
 
-  const bgimage = await sanityFetch({query: BG_QUERY});
+  const bgimage = await sanityFetch({
+    query: BG_QUERY,
+    tags: ["siteSettings"]
+  });
 
   let bgImage
   

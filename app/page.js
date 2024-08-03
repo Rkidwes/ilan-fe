@@ -23,7 +23,11 @@ function getFileUrl(ref) {
 
 export default async function Home() {
 
-  const content = await sanityFetch({query: HOME_QUERY});
+  const content = await sanityFetch({
+    query: HOME_QUERY,
+    tags: ["siteSettings"]
+  });
+
   const sliderContent = await sanityFetch({
     query: SLIDER_QUERY,
     tags: ["slide", "siteSettings"]

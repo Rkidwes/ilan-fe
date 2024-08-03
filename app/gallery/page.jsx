@@ -34,7 +34,10 @@ export default async function Gallery() {
     tags: ["gallery"],
   });
 
-  const bgimage = await sanityFetch({query: BG_QUERY});
+  const bgimage = await sanityFetch({
+    query: BG_QUERY,
+    tags: ["siteSettings"]
+  });
 
   let updatedImages = [];
   let bgImage;
