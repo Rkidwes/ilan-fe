@@ -9,7 +9,6 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
 import { eventsQuery } from "../sanity/query"
 
-// const EVENTS_QUERY = `*[_type == "event"]{_id, eventName, location, startDate, endDate, ticketsURL}|order(date desc)`;
 const BG_QUERY = `*[_type == "siteSettings"]{tourBg, tourBgOpacity}`;
 
 const { projectId, dataset } = client.config();

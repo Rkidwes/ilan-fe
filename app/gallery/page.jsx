@@ -3,8 +3,8 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
 import ImageGallery from "../ui/gallery/gallery";
 import styles from "../page.module.scss";
+import { imagesQuery } from "../sanity/query"
 
-const IMAGES_QUERY = `*[_type == "gallery"]{_id, image, alt, caption}|order(date desc)`;
 const BG_QUERY = `*[_type == "siteSettings"]{galleryBg, galleryBgOpacity}`;
 
 const { projectId, dataset } = client.config();
@@ -29,7 +29,11 @@ export const metadata = {
 
 export default async function Gallery() {
 
-  const images = await sanityFetch({query: IMAGES_QUERY});
+  const images = await sanityFetch({
+    query: imagesQuery,
+    tags: ["gallery"],
+  });
+
   const bgimage = await sanityFetch({query: BG_QUERY});
 
   let updatedImages = [];
