@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/therapy/page.jsx", "app/testimonials/page.jsx", "app/blog/page.jsx"  ],
+, "app/therapy/page.jsx", "app/testimonials/page.jsx", "app/blog/page.jsx", "app/sanity/client.js"  ],
   "exclude": [
     "node_modules"
   ]
