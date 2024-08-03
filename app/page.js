@@ -23,8 +23,15 @@ function getFileUrl(ref) {
 
 export default async function Home() {
 
-  const content = await sanityFetch({query: HOME_QUERY});
-  const sliderContent = await sanityFetch({query: SLIDER_QUERY});
+  const content = await sanityFetch({
+    query: HOME_QUERY,
+    tags: ["siteSettings"]
+  });
+
+  const sliderContent = await sanityFetch({
+    query: SLIDER_QUERY,
+    tags: ["slide", "siteSettings"]
+  });
   
   const { hpTitle, hpText, hpLinkText, hpLinkURL } = content[0]
 

@@ -40,7 +40,10 @@ export default async function Tour() {
     tags: ["event"],
   });
 
-  const bgimage = await sanityFetch({query: BG_QUERY});
+  const bgimage = await sanityFetch({
+    query: BG_QUERY,
+    tags: ["siteSettings"]
+  });
 
   let bgImage
 
