@@ -9,6 +9,9 @@ import { client, sanityFetch } from "./sanity/client"
 const HOME_QUERY = `*[_type == "siteSettings"]{ hpTitle, hpText, hpLinkText, hpLinkURL }`;
 const SLIDER_QUERY = `*[_type == "siteSettings"]{ slide1->, slide2->, slide3->, slide4-> }`;
 
+
+
+
 const { projectId, dataset } = client.config();
 
 const urlFor = (source) =>
