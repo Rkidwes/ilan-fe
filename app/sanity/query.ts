@@ -18,44 +18,44 @@ import { groq } from "next-sanity";
 //   content,
 // }`;
 
-export const homeQuery = groq`*[_type == "siteSettings"]{ 
-  hpTitle, 
-  hpText, 
-  hpLinkText, 
-  hpLinkURL 
-}`;
+// export const homeQuery = groq`*[_type == "siteSettings"]{
+//   hpTitle,
+//   hpText,
+//   hpLinkText,
+//   hpLinkURL
+// }`;
 
-export const sliderQuery = groq`*[_type == "siteSettings"]{ 
-  slide1->, 
-  slide2->, 
-  slide3->, 
-  slide4-> 
-}`;
+// export const sliderQuery = groq`*[_type == "siteSettings"]{
+//   slide1->,
+//   slide2->,
+//   slide3->,
+//   slide4->
+// }`;
 
-export const bioQuery = groq`*[_type == "siteSettings"]{ 
-  biographyTitle, 
-  biography 
-}`;
+// export const bioQuery = groq`*[_type == "siteSettings"]{
+//   biographyTitle,
+//   biography
+// }`;
 
-export const bookingsBgQuery = groq`*[_type == "siteSettings"]{
-  bookingsBg, 
-  bookingsBgOpacity
-}`;
+// export const bookingsBgQuery = groq`*[_type == "siteSettings"]{
+//   bookingsBg,
+//   bookingsBgOpacity
+// }`;
 
-export const galleryBgQuery = groq`*[_type == "siteSettings"]{
-  galleryBg, 
-  galleryBgOpacity
-}`;
+// export const galleryBgQuery = groq`*[_type == "siteSettings"]{
+//   galleryBg,
+//   galleryBgOpacity
+// }`;
 
-export const musicBgQuery = groq`*[_type == "siteSettings"]{
-  musicBg, 
-  musicBgOpacity
-}`;
+// export const musicBgQuery = groq`*[_type == "siteSettings"]{
+//   musicBg,
+//   musicBgOpacity
+// }`;
 
-export const tourBgQuery = groq`*[_type == "siteSettings"]{
-  tourBg, 
-  tourBgOpacity
-}`;
+// export const tourBgQuery = groq`*[_type == "siteSettings"]{
+//   tourBg,
+//   tourBgOpacity
+// }`;
 
 export const imagesQuery = groq`*[_type == "gallery"] {
   _id,

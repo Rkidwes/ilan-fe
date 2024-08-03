@@ -2,8 +2,10 @@ import MusicGrid from "../ui/musicGrid/musicGrid";
 import styles from "../page.module.scss";
 import musicStyles from "./music.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
+import BackgroundImage from '../ui/backgroundImage/backgroundImage'
 import { client, sanityFetch } from "../sanity/client";
-import { musicBgQuery } from "../sanity/query"
+
+const BG_QUERY = `*[_type == "siteSettings"]{musicBg, musicBgOpacity}`;
 
 const { projectId, dataset } = client.config();
 
@@ -11,9 +13,7 @@ const urlFor = (source) =>
   projectId && dataset
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
-
 const metaDescription = 'Check out Ilan Bluestone&#039;s latest and hottest tracks available for download.'
-
 export const metadata = {
   title: 'Music',
   description: metaDescription,
@@ -27,10 +27,7 @@ export const metadata = {
 
 export default async function Music() {
 
-  const bgimage = await sanityFetch({
-    query: musicBgQuery,
-    tags: ["siteSettings"],
-  });
+  const bgimage = await sanityFetch({query: BG_QUERY});
 
   let bgImage
   

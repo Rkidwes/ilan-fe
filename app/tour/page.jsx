@@ -7,7 +7,9 @@ import btnStyles from '../ui/base/button/button.module.scss';
 import tourStyles from "./tour.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
-import { eventsQuery, tourBgQuery } from "../sanity/query"
+import { eventsQuery } from "../sanity/query"
+
+const BG_QUERY = `*[_type == "siteSettings"]{tourBg, tourBgOpacity}`;
 
 const { projectId, dataset } = client.config();
 
@@ -15,9 +17,7 @@ const urlFor = (source) =>
   projectId && dataset
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
-
 const metaDescription = 'This page has all the latest information on Ilan Bluestone&#039;s tour dates and where to access tickets from.'
-
 export const metadata = {
   title: 'Tour',
   description: metaDescription,
@@ -31,15 +31,14 @@ export const metadata = {
 
 export default async function Tour() {
 
+  // const events = await sanityFetch({query: EVENTS_QUERY});
+
   const events = await sanityFetch({
     query: eventsQuery,
     tags: ["event"],
   });
 
-  const bgimage = await sanityFetch({
-    query: tourBgQuery,
-    tags: ["siteSettings"],
-  });
+  const bgimage = await sanityFetch({query: BG_QUERY});
 
   let bgImage
 

@@ -3,7 +3,9 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
 import ImageGallery from "../ui/gallery/gallery";
 import styles from "../page.module.scss";
-import { imagesQuery, galleryBgQuery } from "../sanity/query"
+import { imagesQuery } from "../sanity/query"
+
+const BG_QUERY = `*[_type == "siteSettings"]{galleryBg, galleryBgOpacity}`;
 
 const { projectId, dataset } = client.config();
 
@@ -11,9 +13,7 @@ const urlFor = (source) =>
   projectId && dataset
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
-
 const metaDescription = 'Check out the Ilan Bluestone&#039;s latest Instagram updates.'
-
 export const metadata = {
   title: 'Gallery',
   description: metaDescription,
@@ -24,18 +24,13 @@ export const metadata = {
     description: metaDescription
   }
 };
-
 export default async function Gallery() {
-
   const images = await sanityFetch({
     query: imagesQuery,
     tags: ["gallery"],
   });
 
-  const bgimage = await sanityFetch({
-    query: galleryBgQuery,
-    tags: ["siteSettings"],
-  });
+  const bgimage = await sanityFetch({query: BG_QUERY});
 
   let updatedImages = [];
   let bgImage;
