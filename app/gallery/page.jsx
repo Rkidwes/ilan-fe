@@ -5,8 +5,6 @@ import ImageGallery from "../ui/gallery/gallery";
 import styles from "../page.module.scss";
 import { imagesQuery } from "../sanity/query"
 
-const BG_QUERY = `*[_type == "siteSettings"]{galleryBg, galleryBgOpacity}`;
-
 const { projectId, dataset } = client.config();
 
 const urlFor = (source) =>
@@ -34,7 +32,10 @@ export default async function Gallery() {
     tags: ["gallery"],
   });
 
-  const bgimage = await sanityFetch({query: BG_QUERY});
+  const bgimage = await sanityFetch({
+    query: galleryBgQuery,
+    tags: ["siteSettings"],
+  });
 
   let updatedImages = [];
   let bgImage;

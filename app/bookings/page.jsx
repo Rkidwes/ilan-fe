@@ -2,8 +2,7 @@ import EventForm from "../ui/eventForm/eventForm";
 import styles from "../page.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
-
-const BG_QUERY = `*[_type == "siteSettings"]{bookingsBg, bookingsBgOpacity}`;
+import { bookingsBgQuery } from "../sanity/query";
 
 const { projectId, dataset } = client.config();
 
@@ -27,7 +26,10 @@ export const metadata = {
 
 export default async function Bookings() {
 
-  const bgimage = await sanityFetch({query: BG_QUERY});
+  const bgimage = await sanityFetch({
+    query: bookingsBgQuery,
+    tags: ["siteSettings"],
+  });
 
   let bgImage
   

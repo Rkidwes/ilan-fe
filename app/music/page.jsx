@@ -2,10 +2,7 @@ import MusicGrid from "../ui/musicGrid/musicGrid";
 import styles from "../page.module.scss";
 import musicStyles from "./music.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
-import BackgroundImage from '../ui/backgroundImage/backgroundImage'
 import { client, sanityFetch } from "../sanity/client";
-
-const BG_QUERY = `*[_type == "siteSettings"]{musicBg, musicBgOpacity}`;
 
 const { projectId, dataset } = client.config();
 
@@ -29,7 +26,10 @@ export const metadata = {
 
 export default async function Music() {
 
-  const bgimage = await sanityFetch({query: BG_QUERY});
+  const bgimage = await sanityFetch({
+    query: musicBgQuery,
+    tags: ["siteSettings"],
+  });
 
   let bgImage
   

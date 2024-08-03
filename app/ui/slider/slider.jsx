@@ -65,7 +65,6 @@ const Slider = ({slidesArray}) => {
           {slide.assetType === 'video' ?
             (
               <>
-                {console.log('3333', slide.videoURL, index)}
                 <video ref={videoRef} autoPlay muted={isMuted} loop className="splide__video">
                   {/* <source src={slide.videoURL} type="video/mp4" /> */}
                   {index === 0 ? (

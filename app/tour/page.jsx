@@ -9,8 +9,6 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
 import { eventsQuery } from "../sanity/query"
 
-const BG_QUERY = `*[_type == "siteSettings"]{tourBg, tourBgOpacity}`;
-
 const { projectId, dataset } = client.config();
 
 const urlFor = (source) =>
@@ -33,14 +31,15 @@ export const metadata = {
 
 export default async function Tour() {
 
-  // const events = await sanityFetch({query: EVENTS_QUERY});
-
   const events = await sanityFetch({
     query: eventsQuery,
     tags: ["event"],
   });
 
-  const bgimage = await sanityFetch({query: BG_QUERY});
+  const bgimage = await sanityFetch({
+    query: tourBgQuery,
+    tags: ["siteSettings"],
+  });
 
   let bgImage
 

@@ -3,8 +3,7 @@ import clsx from 'clsx'
 import {PortableText} from '@portabletext/react'
 
 import { sanityFetch } from "../sanity/client"
-
-const BIO_QUERY = `*[_type == "siteSettings"]{ biographyTitle, biography }`;
+import { bioQuery } from "../sanity/query"
 
 const metaDescription = 'Ilan Bluestone has been igniting the dance scene across the world with his unique tracks consisting of that &#039;progressive&#039; sound he builds on today.'
 
@@ -21,7 +20,10 @@ export const metadata = {
 
 export default async function Bio() {
 
-  const content = await sanityFetch({query: BIO_QUERY});
+  const content = await sanityFetch({
+    query: bioQuery,
+    tags: ["siteSettings"],
+  });
   
   const { biographyTitle, biography } = content[0]
   return (
