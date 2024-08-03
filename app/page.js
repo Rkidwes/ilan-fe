@@ -28,7 +28,7 @@ export default async function Home() {
 
   const sliderContent = await sanityFetch({
     query: sliderQuery,
-    tags: ["slide", "siteSettings"],
+    tags: ["siteSettings"],
   });
   
   const { hpTitle, hpText, hpLinkText, hpLinkURL } = content[0]
