@@ -2,7 +2,6 @@ import MusicGrid from "../ui/musicGrid/musicGrid";
 import styles from "../page.module.scss";
 import musicStyles from "./music.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
-import BackgroundImage from '../ui/backgroundImage/backgroundImage'
 import { client, sanityFetch } from "../sanity/client";
 
 const BG_QUERY = `*[_type == "siteSettings"]{musicBg, musicBgOpacity}`;
