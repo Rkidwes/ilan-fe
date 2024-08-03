@@ -3,7 +3,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
 import ImageGallery from "../ui/gallery/gallery";
 import styles from "../page.module.scss";
-import { imagesQuery } from "../sanity/query"
+import { imagesQuery, galleryBgQuery } from "../sanity/query"
 
 const { projectId, dataset } = client.config();
 

@@ -7,7 +7,7 @@ import btnStyles from '../ui/base/button/button.module.scss';
 import tourStyles from "./tour.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
-import { eventsQuery } from "../sanity/query"
+import { eventsQuery, tourBgQuery } from "../sanity/query"
 
 const { projectId, dataset } = client.config();
 

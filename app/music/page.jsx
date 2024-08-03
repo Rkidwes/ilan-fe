@@ -3,6 +3,7 @@ import styles from "../page.module.scss";
 import musicStyles from "./music.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
+import { musicBgQuery } from "../sanity/query"
 
 const { projectId, dataset } = client.config();
 
