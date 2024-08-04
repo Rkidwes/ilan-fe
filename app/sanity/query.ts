@@ -18,12 +18,18 @@ import { groq } from "next-sanity";
 //   content,
 // }`;
 
-export const imagesQuery = groq`*[_type == "gallery"] {
-  _id,
-  image,
-  alt,
-  caption
-}|order(date desc)`;
+// export const imagesQuery = groq`*[_type == "gallery"] {
+//   _id,
+//   image,
+//   alt,
+//   caption
+// }|order(date desc)`;
+
+export const imagesQueryNew = groq`*[_type == "altGallery"]{
+  images[]{
+    ...
+  }
+}`;
 
 export const eventsQuery = groq`*[_type == "event"]{
   _id, 

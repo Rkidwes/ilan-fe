@@ -6,8 +6,8 @@ import {PortableText} from '@portabletext/react'
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "./sanity/client"
 
-const HOME_QUERY = `*[_type == "siteSettings"]{ hpTitle, hpText, hpLinkText, hpLinkURL }`;
-const SLIDER_QUERY = `*[_type == "siteSettings"]{ slide1->, slide2->, slide3->, slide4-> }`;
+const HOME_QUERY = `*[_type == "homePage"]{ hpTitle, hpText, hpLinkText, hpLinkURL }`;
+const SLIDER_QUERY = `*[_type == "homePage"]{ slide1->, slide2->, slide3->, slide4-> }`;
 
 const { projectId, dataset } = client.config();
 
@@ -25,12 +25,12 @@ export default async function Home() {
 
   const content = await sanityFetch({
     query: HOME_QUERY,
-    tags: ["siteSettings"]
+    tags: ["homePage"]
   });
 
   const sliderContent = await sanityFetch({
     query: SLIDER_QUERY,
-    tags: ["slide", "siteSettings"]
+    tags: ["slide", "homePage"]
   });
   
   const { hpTitle, hpText, hpLinkText, hpLinkURL } = content[0]
@@ -39,13 +39,15 @@ export default async function Home() {
   
   sliderContent.forEach((slideGroup, index) => {
     Object.entries(slideGroup).forEach(([key, slide]) => {
-      if (slide.assetType === 'image') {
-        slide.imageURL = urlFor(slide.image).url()
-      }
-      if (slide.assetType === 'video') {
-        slide.videoURL = getFileUrl(slide.video.asset._ref);
-      }
+      if (slide != null ) {
+        if (slide.assetType === 'image') {
+          slide.imageURL = urlFor(slide.image).url()
+        }
+        if (slide.assetType === 'video') {
+          slide.videoURL = getFileUrl(slide.video.asset._ref);
+        }
       slidesArray.push(slide)
+      }
     });
   });
 
