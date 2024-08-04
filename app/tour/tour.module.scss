@@ -4,16 +4,26 @@
   width: 100%;
 
   tr {
-    display: flex;
-  }
+    td {
+      padding: 12px;
+      vertical-align: top;
 
-  td {
-    padding: 12px;
-    vertical-align: top;
+      &:first-child {
+        width: 10px;
+        white-space: nowrap;
+        grid-area: date;
+      }
 
-    &.venue {
-      flex: 1;
-      text-transform: uppercase;
+      &:last-child {
+        text-align: right;
+        grid-area: button;
+      }
+
+      &.venue {
+        flex: 1;
+        text-transform: uppercase;
+        grid-area: title;
+      }
     }
   }
 }
@@ -25,12 +35,40 @@
 
 @media screen and (max-width: 768px) {
   .schedule {
+    border-bottom: none;
     tr {
       display: grid;
+      grid-template-areas:
+        "title button"
+        "date button";
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       margin-bottom: 24px;
+      td {
+        padding: 0;
+        &.venue {
+          padding-bottom: 6px;
+        }
+        &:last-child {
+          a {
+            margin-top: 12px;
+          }
+        }
+      }
     }
-    td {
-      padding-block: 4px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .schedule {
+    tr {
+      grid-template-areas:
+        "title"
+        "date"
+        "button";
+      td:last-child {
+        text-align: left;
+      }
     }
   }
 }

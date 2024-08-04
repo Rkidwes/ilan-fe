@@ -3,7 +3,7 @@ import styles from "../page.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
 import { client, sanityFetch } from "../sanity/client";
 
-const BG_QUERY = `*[_type == "siteSettings"]{bookingsBg, bookingsBgOpacity}`;
+const BG_QUERY = `*[_type == "bookings"]{bookingsMetaDesc, bookingsBg, bookingsBgOpacity}`;
 
 const { projectId, dataset } = client.config();
 
@@ -12,24 +12,32 @@ const urlFor = (source) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
-const metaDescription = 'Please visit this page to submit a booking enquiry with Ilan Bluestone.'
+export async function generateMetadata() {
+  // Fetch the data
+  const content = await sanityFetch({
+    query: BG_QUERY,
+    tags: ["bookings"]
+  });
+  
+  const { bookingsMetaDesc } = content[0];
 
-export const metadata = {
-  title: 'Bookings',
-  description: metaDescription,
-  openGraph: {
-    description: metaDescription
-  },
-  twitter: {
-    description: metaDescription
-  }
-};
+  return {
+    title: 'Bookings',
+    description: bookingsMetaDesc,
+    openGraph: {
+      description: bookingsMetaDesc
+    },
+    twitter: {
+      description: bookingsMetaDesc
+    }
+  };
+}
 
 export default async function Bookings() {
 
   const bgimage = await sanityFetch({
     query: BG_QUERY,
-    tags: ["siteSettings"]
+    tags: ["bookings"]
   });
 
   let bgImage
