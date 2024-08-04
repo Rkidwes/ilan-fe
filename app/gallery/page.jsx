@@ -51,7 +51,7 @@ export default async function Gallery() {
   let bgImage;
 
   if (bgimage[0].galleryBg != null) {
-    bgImage =  urlFor(bgimage[0].galleryBg).url()
+    bgImage =  urlFor(bgimage[0].galleryBg).quality(50).url()
   }
 
   if (images.length > 0) {

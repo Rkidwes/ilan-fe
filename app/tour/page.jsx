@@ -41,8 +41,6 @@ export async function generateMetadata() {
 
 export default async function Tour() {
 
-  // const events = await sanityFetch({query: EVENTS_QUERY});
-
   const events = await sanityFetch({
     query: eventsQuery,
     tags: ["event"],
@@ -56,7 +54,7 @@ export default async function Tour() {
   let bgImage
 
   if (bgimage[0].tourBg != null) {
-    bgImage =  urlFor(bgimage[0].tourBg).url()
+    bgImage =  urlFor(bgimage[0].tourBg).quality(50).url()
   }
 
   return (

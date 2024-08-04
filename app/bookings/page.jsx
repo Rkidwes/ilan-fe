@@ -43,7 +43,7 @@ export default async function Bookings() {
   let bgImage
   
   if (bgimage[0].bookingsBg != null) {
-    bgImage =  urlFor(bgimage[0].bookingsBg).url()
+    bgImage =  urlFor(bgimage[0].bookingsBg).quality(50).url()
   }
 
   return (
