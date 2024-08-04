@@ -67,7 +67,6 @@ const Slider = ({slidesArray}) => {
               <>
                 {console.log('3333', slide.videoURL, index)}
                 <video ref={videoRef} autoPlay muted={isMuted} loop className="splide__video">
-                  {/* <source src={slide.videoURL} type="video/mp4" /> */}
                   {index === 0 ? (
                     <source src={slide.videoURL} type="video/mp4" />
                   ) : (
@@ -85,9 +84,6 @@ const Slider = ({slidesArray}) => {
                   fill
                   sizes='100vw'
                   priority={index === 0}
-                  lazyload={index !== 0}
-                  // lazyload={(index === 2 || index === 3).toString()}
-                  // data-splide-lazy={slide.imageURL}
                 />
               </>
             )

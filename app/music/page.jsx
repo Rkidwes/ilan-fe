@@ -5,7 +5,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import BackgroundImage from '../ui/backgroundImage/backgroundImage'
 import { client, sanityFetch } from "../sanity/client";
 
-const BG_QUERY = `*[_type == "siteSettings"]{musicBg, musicBgOpacity}`;
+const BG_QUERY = `*[_type == "music"]{musicMetaDesc, musicBg, musicBgOpacity}`;
 
 const { projectId, dataset } = client.config();
 
@@ -14,24 +14,32 @@ const urlFor = (source) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
-const metaDescription = 'Check out Ilan Bluestone&#039;s latest and hottest tracks available for download.'
+export async function generateMetadata() {
+  // Fetch the data
+  const content = await sanityFetch({
+    query: BG_QUERY,
+    tags: ["music"]
+  });
+  
+  const { musicMetaDesc } = content[0];
 
-export const metadata = {
-  title: 'Music',
-  description: metaDescription,
-  openGraph: {
-    description: metaDescription
-  },
-  twitter: {
-    description: metaDescription
-  }
-};
+  return {
+    title: 'Music',
+    description: musicMetaDesc,
+    openGraph: {
+      description: musicMetaDesc
+    },
+    twitter: {
+      description: musicMetaDesc
+    }
+  };
+}
 
 export default async function Music() {
 
   const bgimage = await sanityFetch({
     query: BG_QUERY,
-    tags: ["siteSettings"]
+    tags: ["music"]
   });
 
   let bgImage

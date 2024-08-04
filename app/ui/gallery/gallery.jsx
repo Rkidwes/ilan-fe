@@ -28,7 +28,7 @@ function ImageGallery({ images }) {
       <div className={styles.gallery}>
 
         {images.map((image, index) => (
-          <div key={image._id} onClick={() => handleImageClick(index)}>
+          <div key={image._key} onClick={() => handleImageClick(index)}>
             <Image src={image.image} alt={image.alt} fill sizes="(min-width: 1200px) 240px, 192px" loading='eager' />
             {image.caption && (<p>{image.caption}</p>)}
           </div>

@@ -4,29 +4,38 @@ import {PortableText} from '@portabletext/react'
 
 import { sanityFetch } from "../sanity/client"
 
-const BIO_QUERY = `*[_type == "siteSettings"]{ biographyTitle, biography }`;
+const BIO_QUERY = `*[_type == "bio"]{bioMetaDesc, biographyTitle, biography }`;
 
-const metaDescription = 'Ilan Bluestone has been igniting the dance scene across the world with his unique tracks consisting of that &#039;progressive&#039; sound he builds on today.'
+export async function generateMetadata() {
+  // Fetch the data
+  const content = await sanityFetch({
+    query: BIO_QUERY,
+    tags: ["bio"]
+  });
+  
+  const { bioMetaDesc } = content[0];
 
-export const metadata = {
-  title: 'Bio',
-  description: metaDescription,
-  openGraph: {
-    description: metaDescription
-  },
-  twitter: {
-    description: metaDescription
-  }
-};
+  return {
+    title: 'Bio',
+    description: bioMetaDesc,
+    openGraph: {
+      description: bioMetaDesc
+    },
+    twitter: {
+      description: bioMetaDesc
+    }
+  };
+}
 
 export default async function Bio() {
 
   const content = await sanityFetch({
     query: BIO_QUERY,
-    tags: ["siteSettings"]
+    tags: ["bio"]
   });
   
-  const { biographyTitle, biography } = content[0]
+  const { bioMetaDesc, biographyTitle, biography } = content[0]
+
   return (
   <main id={styles.main} className={styles.bio} style={{'--bg': "url('/ilan-bio-section.jpg')"}}>
     <div className="container">
