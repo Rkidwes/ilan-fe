@@ -6,33 +6,42 @@
   display: flex;
   gap: 16px;
 
+  h4 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
   img {
     width: 140px;
     height: 140px;
   }
 
-  p {
-    margin: 0;
+  div {
+    p {
+      margin: 0;
+    }
   }
-}
 
-a.musicIconsLink {
-  width: 36px;
-  height: 36px;
-  text-indent: 100px;
-  line-height: 100px;
-  overflow: hidden;
-  display: block;
-  background: url("/ib-sprite.png") no-repeat;
-  background-size: 300px 300px;
-  background-position: var(--xPosition, -118px) var(--yPosition);
-  transition: unset;
+  a.musicIconsLink {
+    width: 36px;
+    height: 36px;
+    text-indent: 100px;
+    line-height: 100px;
+    overflow: hidden;
+    display: block;
+    background: url("/ib-sprite.png") no-repeat;
+    background-size: 300px 300px;
+    background-position: var(--xPosition, -118px) var(--yPosition);
+    transition: unset;
 
-  &Spotify {
-    --yPosition: -93px;
+    &Spotify {
+      --yPosition: -93px;
 
-    &:hover {
-      --yPosition: -133px;
+      &:hover {
+        --yPosition: -133px;
+      }
     }
   }
 }

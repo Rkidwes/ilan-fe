@@ -38,4 +38,4 @@ export const eventsQuery = groq`*[_type == "event"]{
   startDate, 
   endDate, 
   ticketsURL
-}|order(date desc)`;
+}|order(startDate asc)`;

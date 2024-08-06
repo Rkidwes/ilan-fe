@@ -2,7 +2,6 @@ import MusicGrid from "../ui/musicGrid/musicGrid";
 import styles from "../page.module.scss";
 import musicStyles from "./music.module.scss";
 import imageUrlBuilder from "@sanity/image-url";
-import BackgroundImage from '../ui/backgroundImage/backgroundImage'
 import { client, sanityFetch } from "../sanity/client";
 
 const BG_QUERY = `*[_type == "music"]{musicMetaDesc, musicBg, musicBgOpacity}`;
@@ -20,7 +19,7 @@ export async function generateMetadata() {
     query: BG_QUERY,
     tags: ["music"]
   });
-  
+
   const { musicMetaDesc } = content[0];
 
   return {
@@ -37,6 +36,10 @@ export async function generateMetadata() {
 
 export default async function Music() {
 
+  const res = await fetch(process.env.URL + '/api/spotify', { next: { revalidate: 86400 } })
+  const data = await res.json();
+  const topTracks = data;
+
   const bgimage = await sanityFetch({
     query: BG_QUERY,
     tags: ["music"]
@@ -45,22 +48,20 @@ export default async function Music() {
   let bgImage
   
   if (bgimage[0].musicBg != null) {
-    bgImage =  urlFor(bgimage[0].musicBg).url()
+    bgImage =  urlFor(bgimage[0].musicBg).quality(50).url()
   }
-
+  
   return (
-  <main id={styles.main}>
-
-    <div className={styles.bgWrapper} style={{ '--bg': `url(${bgImage})`, '--opacity': `${bgimage[0].tourBgOpacity}`}} />
-
-    <div className="container">
-      <div className={styles.content}>
-        <h1>Music</h1>
-        <div className={musicStyles.musicCards}>
-          <MusicGrid />
+    <main id={styles.main}>
+      <div className={styles.bgWrapper} style={{ '--bg': `url(${bgImage})`, '--opacity': `${bgimage[0].tourBgOpacity}`}} />
+      <div className="container">
+        <div className={styles.content}>
+          <h1>Music</h1>
+          <div className={musicStyles.musicCards}>
+            <MusicGrid topTracks={topTracks} />
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
   );
 }
