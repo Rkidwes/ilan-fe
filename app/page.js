@@ -21,6 +21,18 @@ function getFileUrl(ref) {
   return `https://cdn.sanity.io/files/${projectId}/${dataset}/${id}.${extension}`;
 }
 
+function getQuality() {
+  const connectionType = navigator.connection?.effectiveType;
+
+  if (connectionType === '3g') {
+    return 50; // Lower quality for slower connections
+  } else if (connectionType === '2g' || connectionType === 'slow-2g') {
+    return 35; // Lower quality for slower connections
+  } else {
+    return 75;
+  }
+}
+
 export default async function Home() {
 
   const content = await sanityFetch({
@@ -51,10 +63,12 @@ export default async function Home() {
     });
   });
 
+  const quality = getQuality();
+  console.log('555', quality)
   
   return (
     <>
-      <Slider slidesArray={slidesArray} />
+      <Slider slidesArray={slidesArray} quality={quality} />
       <main id={styles.main} className={clsx(`fill-height`, styles.home)} style={{'--bg': "url('/ilan-bio-section.jpg')"}}>
         <div className="container">
           <div className={clsx(`${styles.content}`, `${styles.contentNarrow}`)}>

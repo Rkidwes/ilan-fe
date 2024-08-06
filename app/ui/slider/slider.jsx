@@ -10,7 +10,9 @@ import clsx from 'clsx';
 import '@splidejs/react-splide/css';
 import './slider.scss';
 
-const Slider = ({slidesArray}) => {
+const cacheBuster = new Date().getTime();
+
+const Slider = ({slidesArray, quality}) => {
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
@@ -62,33 +64,6 @@ const Slider = ({slidesArray}) => {
       {slidesArray.map((slide, index) => (
         <SplideSlide key={index} className={clsx(`splide__slide__${index}`)}>
 
-          {slide.assetType === 'video' ?
-            (
-              <>
-                {console.log('3333', slide.videoURL, index)}
-                <video ref={videoRef} autoPlay muted={isMuted} loop className="splide__video">
-                  {index === 0 ? (
-                    <source src={slide.videoURL} type="video/mp4" />
-                  ) : (
-                    <source data-src={slide.videoURL} type="video/mp4" />
-                  )}
-                </video>
-              </>
-            )
-            :
-            (
-              <>
-                <Image 
-                  src={slide.imageURL}
-                  alt={slide.headline} 
-                  fill
-                  sizes='100vw'
-                  priority={index === 0}
-                />
-              </>
-            )
-          }
-
           <div className='container'>
             <h2>{slide.headline}</h2>
             {slide.subtitle && (<p>{slide.subtitle}</p>)}
@@ -104,6 +79,35 @@ const Slider = ({slidesArray}) => {
               </div>
             )}
           </div>
+
+          {slide.assetType === 'video' ?
+            (
+              <>
+                <video ref={videoRef} autoPlay muted={isMuted} loop className="splide__video">
+                  {index === 0 ? (
+                    <source src={slide.videoURL} type="video/mp4" />
+                  ) : (
+                    <source data-src={slide.videoURL} type="video/mp4" />
+                  )}
+                </video>
+              </>
+            )
+            :
+            (
+              <>
+                {console.log('SLIDE ', quality)}
+                <Image 
+                  src={`${slide.imageURL}?cb=${cacheBuster}`}
+                  alt={slide.headline} 
+                  quality={quality}
+                  fill
+                  sizes='100vw'
+                  priority={index === 0}
+                  // loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </>
+            )
+          }
 
         </SplideSlide>
       ))}

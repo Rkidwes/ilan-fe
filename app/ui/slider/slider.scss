@@ -3,11 +3,6 @@
   flex: 0 0 100%;
   position: relative;
 
-  // & > * {
-  //   background-position: center;
-  //   background-size: cover;
-  // }
-
   &::after {
     content: "";
     background-image: linear-gradient(
