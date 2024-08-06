@@ -65,7 +65,6 @@ const Slider = ({slidesArray}) => {
           {slide.assetType === 'video' ?
             (
               <>
-                {console.log('3333', slide.videoURL, index)}
                 <video ref={videoRef} autoPlay muted={isMuted} loop className="splide__video">
                   {index === 0 ? (
                     <source src={slide.videoURL} type="video/mp4" />
@@ -84,6 +83,7 @@ const Slider = ({slidesArray}) => {
                   fill
                   sizes='100vw'
                   priority={index === 0}
+                  loading={index !== 0 ? 'lazy' : 'eager'}
                 />
               </>
             )

@@ -22,7 +22,12 @@ export default function MyComponent() {
         (topTracks.map((item, index) => (
           <MusicCard key={index} item={item} />
         ))) :
-        'Loading...'
+        (
+          // <MusicCard count={10} />
+          <div style={{ minHeight: '150px', display: 'flex', justifyContent: 'center', alignItems: 'center', gridColumn: 'span 2' }}>
+            <h1>Fetching Ilans top tracks</h1>
+          </div>
+        )
       }
     </>
   );

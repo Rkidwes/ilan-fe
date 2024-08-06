@@ -5,6 +5,10 @@
   position: relative;
   background-repeat: no-repeat;
 
+  &:not(.home) {
+    padding-block-start: 134px;
+  }
+
   &.home,
   &.bio {
     align-items: center;
@@ -28,7 +32,7 @@
   color: var(--white);
   height: 100%;
   width: 100%;
-  padding-block: 134px;
+  padding-block-end: 134px;
   container-type: inline-size;
 
   &Narrow {
