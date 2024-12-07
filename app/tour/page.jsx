@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import clsx from 'clsx';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import styles from "../page.module.scss";
 import btnStyles from '../ui/base/button/button.module.scss';
 import tourStyles from "./tour.module.scss";
@@ -57,6 +57,14 @@ export default async function Tour() {
     bgImage =  urlFor(bgimage[0].tourBg).quality(50).url()
   }
 
+  const sortedEvents = events
+  .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+  .map((event) => ({
+    ...event,
+    formattedStartDate: format(parseISO(event.startDate), 'dd MMM yyyy'),
+    formattedEndDate: event.endDate ? format(parseISO(event.endDate), 'dd MMM yyyy') : null,
+  }));
+
   return (
   <main id={styles.main}>
 
@@ -66,24 +74,42 @@ export default async function Tour() {
       <div className={styles.content}>
         <h1>Tour dates</h1>
 
-        {events.length > 0 ? (
+        {sortedEvents.length > 0 ? (
           <>
             <table className={tourStyles.schedule}>
               <tbody>
-              {events.map((show) => 
-                <tr key={show._id}>
-                  <td className={tourStyles.date}>
-                    {format(show.startDate, 'dd MMM yyyy')}
-                    {show.endDate && <> to <br />{`${format(show.endDate, 'dd MMM yyyy')}`}</>}
-                  </td>
-                  <td className={tourStyles.venue}>{show.eventName}{show.location && <><br /> {`${show.location}`}</>}</td>
-                  <td className={tourStyles.button}>
-                    {show.ticketsURL && <Link href={show.ticketsURL} target="_blank" rel="noreferrer nofollow" className={clsx(btnStyles.btn, btnStyles.btnCta, btnStyles.btnOutline)}>
-                      <span>Get Tickets</span>
-                    </Link>}
-                  </td>
-                </tr>
-              )}
+                {sortedEvents.map(({ _id, eventName, location, formattedStartDate, formattedEndDate, ticketsURL }) => (
+                  <tr key={_id}>
+                    <td className={tourStyles.date}>
+                      {formattedStartDate}
+                      {formattedEndDate && (
+                        <>
+                          to <br /> {formattedEndDate}
+                        </>
+                      )}
+                    </td>
+                    <td className={tourStyles.venue}>
+                      {eventName}
+                      {location && (
+                        <>
+                          <br /> {location}
+                        </>
+                      )}
+                    </td>
+                    <td className={tourStyles.button}>
+                      {ticketsURL && (
+                        <Link
+                          href={ticketsURL}
+                          target="_blank"
+                          rel="noreferrer nofollow"
+                          className={clsx(btnStyles.btn, btnStyles.btnCta, btnStyles.btnOutline)}
+                        >
+                          <span>Get Tickets</span>
+                        </Link>
+                      )}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             <Image className={tourStyles.logo} src="/concerts-by-songkick.png" alt="" width="116" height="30" />
